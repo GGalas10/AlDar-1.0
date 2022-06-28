@@ -54,6 +54,27 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Window\ProdPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\ProdPanel.Designer.cs">
+      <DependentUpon>ProdPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Window\StartPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\StartPanel.Designer.cs">
+      <DependentUpon>StartPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Window\ValPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\ValPanel.Designer.cs">
+      <DependentUpon>ValPanel.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +84,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Window\ProdPanel.resx">
+      <DependentUpon>ProdPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\StartPanel.resx">
+      <DependentUpon>StartPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\ValPanel.resx">
+      <DependentUpon>ValPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
