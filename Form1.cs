@@ -16,5 +16,13 @@ namespace AlDar_1._0
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Window.StartPanel home = new Window.StartPanel();
+            home.TopLevel = false;
+            this.panel2.Controls.Add(home);
+            home.Show();
+        }
     }
 }
