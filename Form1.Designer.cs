@@ -66,6 +66,7 @@
             this.ProdBtn.Text = "Produkty";
             this.ProdBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ProdBtn.UseVisualStyleBackColor = false;
+            this.ProdBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveFormForm);
             // 
             // ValBtn
             // 
@@ -84,6 +85,7 @@
             this.ValBtn.Text = "Wyceny";
             this.ValBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ValBtn.UseVisualStyleBackColor = false;
+            this.ValBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveFormForm);
             // 
             // HomeBtn
             // 
@@ -102,6 +104,7 @@
             this.HomeBtn.Text = "Start";
             this.HomeBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.HomeBtn.UseVisualStyleBackColor = false;
+            this.HomeBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveFormForm);
             // 
             // panel2
             // 
@@ -123,7 +126,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Menu główne";
+            this.Text = "Start";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
