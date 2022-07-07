@@ -24,8 +24,10 @@ namespace AlDar_1._0.Window
                 "\nDzisiaj zostało dodanych{val.where.count} wycen" +
                 "\nOstatnia wycena była dla {val.lastindex.name}" +
                 "\n";
-            VerLbl.Text=("Wersja aplikacji {prop.ver}");
-            
+            VerLbl.Text = ("Wersja aplikacji " + AlDar_1._0.Properties.Settings.Default.Version);
+            VerLbl.Location = new Point(780 - VerLbl.Size.Width, 480);
+
+
         }
     }
 }

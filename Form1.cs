@@ -24,6 +24,7 @@ namespace AlDar_1._0
             ActiveForm = new Window.StartPanel();
             ActiveForm.TopLevel = false;
             this.panel2.Controls.Add(ActiveForm);
+            ActiveForm.Dock = DockStyle.Fill;
             ActiveForm.Show();
         }
 
@@ -34,7 +35,7 @@ namespace AlDar_1._0
         /// 0 - Home Panel
         /// 1 - Valuation Panel
         /// 2 - Product Panel
-        private void SetActiveFormForm(object sender, EventArgs e)
+        private void SetActiveForm(object sender, EventArgs e)
         {
             this.panel2.Controls.Remove(ActiveForm);
             Button btn = (Button)sender;
@@ -44,6 +45,7 @@ namespace AlDar_1._0
                     ActiveForm.Hide();
                     ActiveForm = new Window.StartPanel();
                     ActiveForm.TopLevel = false;
+                    ActiveForm.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
                     this.panel2.Controls.Add(ActiveForm);
                     ActiveForm.Show();
                     this.Text = "Start";
@@ -52,6 +54,7 @@ namespace AlDar_1._0
                     ActiveForm.Hide();
                     ActiveForm = new Window.ValPanel();
                     ActiveForm.TopLevel = false;
+                    ActiveForm.Dock = DockStyle.Fill;
                     this.panel2.Controls.Add(ActiveForm);
                     ActiveForm.Show();
                     this.Text = "Wyceny";
@@ -60,6 +63,7 @@ namespace AlDar_1._0
                     ActiveForm.Hide();
                     ActiveForm = new Window.ProdPanel();
                     ActiveForm.TopLevel = false;
+                    ActiveForm.Dock = DockStyle.Fill;
                     this.panel2.Controls.Add(ActiveForm);
                     ActiveForm.Show();
                     this.Text = "Produkty";

@@ -66,7 +66,7 @@
             this.ProdBtn.Text = "Produkty";
             this.ProdBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ProdBtn.UseVisualStyleBackColor = false;
-            this.ProdBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveFormForm);
+            this.ProdBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveForm);
             // 
             // ValBtn
             // 
@@ -85,7 +85,7 @@
             this.ValBtn.Text = "Wyceny";
             this.ValBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ValBtn.UseVisualStyleBackColor = false;
-            this.ValBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveFormForm);
+            this.ValBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveForm); ;
             // 
             // HomeBtn
             // 
@@ -104,11 +104,13 @@
             this.HomeBtn.Text = "Start";
             this.HomeBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.HomeBtn.UseVisualStyleBackColor = false;
-            this.HomeBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveFormForm);
+            this.HomeBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveForm); ;
             // 
             // panel2
             // 
-            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.Location = new System.Drawing.Point(0, 50);
             this.panel2.Name = "panel2";

@@ -82,7 +82,7 @@
             // 
             this.VerLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.VerLbl.AutoSize = true;
-            this.VerLbl.Location = new System.Drawing.Point(609, 489);
+            this.VerLbl.Location = new System.Drawing.Point(640, 478);
             this.VerLbl.Name = "VerLbl";
             this.VerLbl.Size = new System.Drawing.Size(0, 13);
             this.VerLbl.TabIndex = 2;
@@ -91,14 +91,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(784, 511);
+            this.ClientSize = new System.Drawing.Size(784, 500);
             this.Controls.Add(this.VerLbl);
             this.Controls.Add(this.HomeLbl);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(784, 511);
+            this.MinimumSize = new System.Drawing.Size(784, 500);
             this.Name = "StartPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.StartPanel_Load);

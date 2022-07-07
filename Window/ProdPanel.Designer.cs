@@ -38,44 +38,52 @@
             // 
             // NewProdBtn
             // 
-            this.NewProdBtn.Location = new System.Drawing.Point(499, 12);
+            this.NewProdBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.NewProdBtn.Location = new System.Drawing.Point(12, 12);
             this.NewProdBtn.Name = "NewProdBtn";
-            this.NewProdBtn.Size = new System.Drawing.Size(289, 23);
+            this.NewProdBtn.Size = new System.Drawing.Size(270, 23);
             this.NewProdBtn.TabIndex = 1;
             this.NewProdBtn.Text = "Dodaj produkt";
             this.NewProdBtn.UseVisualStyleBackColor = true;
             // 
             // ImportBtn
             // 
-            this.ImportBtn.Location = new System.Drawing.Point(499, 50);
+            this.ImportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ImportBtn.Location = new System.Drawing.Point(12, 50);
             this.ImportBtn.Name = "ImportBtn";
-            this.ImportBtn.Size = new System.Drawing.Size(289, 23);
+            this.ImportBtn.Size = new System.Drawing.Size(270, 23);
             this.ImportBtn.TabIndex = 2;
             this.ImportBtn.Text = "Załaduj produkty z csv/excel";
             this.ImportBtn.UseVisualStyleBackColor = true;
             // 
             // ExportBtn
             // 
-            this.ExportBtn.Location = new System.Drawing.Point(499, 89);
+            this.ExportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ExportBtn.Location = new System.Drawing.Point(12, 89);
             this.ExportBtn.Name = "ExportBtn";
-            this.ExportBtn.Size = new System.Drawing.Size(289, 23);
+            this.ExportBtn.Size = new System.Drawing.Size(270, 23);
             this.ExportBtn.TabIndex = 3;
             this.ExportBtn.Text = "Pobierz produkty do csv/excel";
             this.ExportBtn.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(288, 12);
+            this.dataGridView1.MinimumSize = new System.Drawing.Size(481, 426);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(481, 426);
+            this.dataGridView1.Size = new System.Drawing.Size(484, 476);
             this.dataGridView1.TabIndex = 4;
             // 
             // DelBtn
             // 
-            this.DelBtn.Location = new System.Drawing.Point(499, 415);
+            this.DelBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DelBtn.Location = new System.Drawing.Point(12, 465);
             this.DelBtn.Name = "DelBtn";
-            this.DelBtn.Size = new System.Drawing.Size(289, 23);
+            this.DelBtn.Size = new System.Drawing.Size(270, 23);
             this.DelBtn.TabIndex = 5;
             this.DelBtn.Text = "Usuń wybrany produkt";
             this.DelBtn.UseVisualStyleBackColor = true;
@@ -84,13 +92,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(784, 500);
             this.Controls.Add(this.DelBtn);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.ExportBtn);
             this.Controls.Add(this.ImportBtn);
             this.Controls.Add(this.NewProdBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimumSize = new System.Drawing.Size(784, 500);
             this.Name = "ProdPanel";
             this.Text = "ProdPanel";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
