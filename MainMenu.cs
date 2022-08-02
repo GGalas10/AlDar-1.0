@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace AlDar_1._0
 {
-    public partial class Form1 : Form
+    public partial class MainMenu : Form
     {
         private Form ActiveForm;
         private Button ClickBtn;
-        public Form1()
+        public MainMenu()
         {
             InitializeComponent();
         }

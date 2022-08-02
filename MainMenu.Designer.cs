@@ -1,6 +1,6 @@
 ﻿namespace AlDar_1._0
 {
-    partial class Form1
+    partial class MainMenu
     {
         /// <summary>
         /// Wymagana zmienna projektanta.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.panel1 = new System.Windows.Forms.Panel();
             this.ProdBtn = new System.Windows.Forms.Button();
             this.ValBtn = new System.Windows.Forms.Button();
@@ -66,7 +66,6 @@
             this.ProdBtn.Text = "Produkty";
             this.ProdBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ProdBtn.UseVisualStyleBackColor = false;
-            this.ProdBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveForm);
             // 
             // ValBtn
             // 
@@ -85,7 +84,6 @@
             this.ValBtn.Text = "Wyceny";
             this.ValBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ValBtn.UseVisualStyleBackColor = false;
-            this.ValBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveForm); ;
             // 
             // HomeBtn
             // 
@@ -104,7 +102,6 @@
             this.HomeBtn.Text = "Start";
             this.HomeBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.HomeBtn.UseVisualStyleBackColor = false;
-            this.HomeBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveForm); ;
             // 
             // panel2
             // 
@@ -117,7 +114,7 @@
             this.panel2.Size = new System.Drawing.Size(784, 511);
             this.panel2.TabIndex = 1;
             // 
-            // Form1
+            // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -126,7 +123,7 @@
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 600);
-            this.Name = "Form1";
+            this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Start";
             this.Load += new System.EventHandler(this.Form1_Load);

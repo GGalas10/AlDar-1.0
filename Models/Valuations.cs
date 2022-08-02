@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Status = AlDar_1._0.Common_Class.Status;
 
 namespace AlDar_1._0.Models
 {
@@ -12,5 +13,6 @@ namespace AlDar_1._0.Models
         public string NameVal { get; set; }
         public float ValTotalAmount { get; set; }
         public virtual List<Products> Products { get; set; }
+        public Status Status { get; set; }
     }
 }
