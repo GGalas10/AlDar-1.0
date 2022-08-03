@@ -1,6 +1,6 @@
-﻿namespace AlDar_1._0.Window
+﻿namespace AlDar_1._0.Window.AdditionalForm
 {
-    partial class ProdPanel
+    partial class AddFromExcel
     {
         /// <summary>
         /// Required designer variable.
@@ -32,35 +32,39 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.NewProdBtn = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddFromExcel));
+            this.FodlerBtn = new System.Windows.Forms.Button();
+            this.FileDial = new System.Windows.Forms.OpenFileDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.IdCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CheckCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ExportBtn = new System.Windows.Forms.Button();
-            this.ImportBtn = new System.Windows.Forms.Button();
-            this.DelBtn = new System.Windows.Forms.Button();
-            this.ExcelChangeBtn = new System.Windows.Forms.Button();
-            this.FolderForExport = new System.Windows.Forms.FolderBrowserDialog();
+            this.MeasureCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReadyBtn = new System.Windows.Forms.Button();
+            this.TemplateBtn = new System.Windows.Forms.Button();
+            this.folderBrow = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // NewProdBtn
+            // FodlerBtn
             // 
-            this.NewProdBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.NewProdBtn.BackColor = System.Drawing.Color.Black;
-            this.NewProdBtn.FlatAppearance.BorderSize = 0;
-            this.NewProdBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NewProdBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.NewProdBtn.ForeColor = System.Drawing.Color.White;
-            this.NewProdBtn.Location = new System.Drawing.Point(12, 12);
-            this.NewProdBtn.Name = "NewProdBtn";
-            this.NewProdBtn.Size = new System.Drawing.Size(215, 32);
-            this.NewProdBtn.TabIndex = 1;
-            this.NewProdBtn.Text = "Dodaj produkt";
-            this.NewProdBtn.UseVisualStyleBackColor = false;
-            this.NewProdBtn.Click += new System.EventHandler(this.NewProdBtn_Click);
+            this.FodlerBtn.BackColor = System.Drawing.Color.Black;
+            this.FodlerBtn.FlatAppearance.BorderSize = 0;
+            this.FodlerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.FodlerBtn.ForeColor = System.Drawing.Color.White;
+            this.FodlerBtn.Location = new System.Drawing.Point(12, 12);
+            this.FodlerBtn.Name = "FodlerBtn";
+            this.FodlerBtn.Size = new System.Drawing.Size(120, 29);
+            this.FodlerBtn.TabIndex = 0;
+            this.FodlerBtn.Text = "Wybierz plik excel";
+            this.FodlerBtn.UseVisualStyleBackColor = false;
+            this.FodlerBtn.Click += new System.EventHandler(this.FodlerBtn_Click);
+            // 
+            // FileDial
+            // 
+            this.FileDial.FileName = "openFileDialog1";
+            this.FileDial.Filter = "Pliki Excel|*xlsx";
+            this.FileDial.Title = "Wybieranie Excela";
             // 
             // dataGridView1
             // 
@@ -69,19 +73,21 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Silver;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdCol,
             this.NameCol,
             this.PriceCol,
-            this.CheckCol});
-            this.dataGridView1.Location = new System.Drawing.Point(233, 12);
-            this.dataGridView1.MinimumSize = new System.Drawing.Size(481, 426);
+            this.MeasureCol});
+            this.dataGridView1.Location = new System.Drawing.Point(138, 12);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(539, 487);
-            this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dataGridView1.Size = new System.Drawing.Size(523, 477);
+            this.dataGridView1.TabIndex = 5;
             // 
             // IdCol
             // 
@@ -137,122 +143,84 @@
             this.PriceCol.Name = "PriceCol";
             this.PriceCol.ReadOnly = true;
             // 
-            // CheckCol
+            // MeasureCol
             // 
-            this.CheckCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MeasureCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.NullValue = false;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(5);
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.CheckCol.DefaultCellStyle = dataGridViewCellStyle8;
-            this.CheckCol.FillWeight = 50F;
-            this.CheckCol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CheckCol.HeaderText = "Zaznaczenie";
-            this.CheckCol.MinimumWidth = 50;
-            this.CheckCol.Name = "CheckCol";
-            this.CheckCol.ReadOnly = true;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.MeasureCol.DefaultCellStyle = dataGridViewCellStyle8;
+            this.MeasureCol.HeaderText = "Jednostka miary";
+            this.MeasureCol.MinimumWidth = 75;
+            this.MeasureCol.Name = "MeasureCol";
+            this.MeasureCol.ReadOnly = true;
+            this.MeasureCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // ExportBtn
+            // ReadyBtn
             // 
-            this.ExportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ExportBtn.BackColor = System.Drawing.Color.Black;
-            this.ExportBtn.FlatAppearance.BorderSize = 0;
-            this.ExportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExportBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ExportBtn.ForeColor = System.Drawing.Color.White;
-            this.ExportBtn.Location = new System.Drawing.Point(12, 50);
-            this.ExportBtn.Name = "ExportBtn";
-            this.ExportBtn.Size = new System.Drawing.Size(215, 32);
-            this.ExportBtn.TabIndex = 6;
-            this.ExportBtn.Text = "Exportuj pliki do excela";
-            this.ExportBtn.UseVisualStyleBackColor = false;
-            this.ExportBtn.Click += new System.EventHandler(this.ExportBtn_Click);
+            this.ReadyBtn.BackColor = System.Drawing.Color.Black;
+            this.ReadyBtn.FlatAppearance.BorderSize = 0;
+            this.ReadyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ReadyBtn.ForeColor = System.Drawing.Color.White;
+            this.ReadyBtn.Location = new System.Drawing.Point(12, 421);
+            this.ReadyBtn.Name = "ReadyBtn";
+            this.ReadyBtn.Size = new System.Drawing.Size(120, 68);
+            this.ReadyBtn.TabIndex = 6;
+            this.ReadyBtn.Text = "Akceptuj";
+            this.ReadyBtn.UseVisualStyleBackColor = false;
+            this.ReadyBtn.Click += new System.EventHandler(this.ReadyBtn_Click);
             // 
-            // ImportBtn
+            // TemplateBtn
             // 
-            this.ImportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ImportBtn.BackColor = System.Drawing.Color.Black;
-            this.ImportBtn.FlatAppearance.BorderSize = 0;
-            this.ImportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ImportBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ImportBtn.ForeColor = System.Drawing.Color.White;
-            this.ImportBtn.Location = new System.Drawing.Point(12, 456);
-            this.ImportBtn.Name = "ImportBtn";
-            this.ImportBtn.Size = new System.Drawing.Size(215, 32);
-            this.ImportBtn.TabIndex = 7;
-            this.ImportBtn.Text = "Dodaj produkty z excela";
-            this.ImportBtn.UseVisualStyleBackColor = false;
-            this.ImportBtn.Click += new System.EventHandler(this.ImportBtn_Click);
+            this.TemplateBtn.BackColor = System.Drawing.Color.Black;
+            this.TemplateBtn.FlatAppearance.BorderSize = 0;
+            this.TemplateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TemplateBtn.ForeColor = System.Drawing.Color.White;
+            this.TemplateBtn.Location = new System.Drawing.Point(12, 127);
+            this.TemplateBtn.Name = "TemplateBtn";
+            this.TemplateBtn.Size = new System.Drawing.Size(120, 70);
+            this.TemplateBtn.TabIndex = 7;
+            this.TemplateBtn.Text = "Zapisz szablon pliku";
+            this.TemplateBtn.UseVisualStyleBackColor = false;
+            this.TemplateBtn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // DelBtn
+            // AddFromExcel
             // 
-            this.DelBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DelBtn.BackColor = System.Drawing.Color.Black;
-            this.DelBtn.FlatAppearance.BorderSize = 0;
-            this.DelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DelBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DelBtn.ForeColor = System.Drawing.Color.White;
-            this.DelBtn.Location = new System.Drawing.Point(12, 88);
-            this.DelBtn.Name = "DelBtn";
-            this.DelBtn.Size = new System.Drawing.Size(215, 32);
-            this.DelBtn.TabIndex = 8;
-            this.DelBtn.Text = "Usuń wybrane produkty\r\n";
-            this.DelBtn.UseVisualStyleBackColor = false;
-            this.DelBtn.Click += new System.EventHandler(this.DelBtn_Click);
-            // 
-            // ExcelChangeBtn
-            // 
-            this.ExcelChangeBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ExcelChangeBtn.BackColor = System.Drawing.Color.Black;
-            this.ExcelChangeBtn.FlatAppearance.BorderSize = 0;
-            this.ExcelChangeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExcelChangeBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ExcelChangeBtn.ForeColor = System.Drawing.Color.White;
-            this.ExcelChangeBtn.Location = new System.Drawing.Point(12, 418);
-            this.ExcelChangeBtn.Name = "ExcelChangeBtn";
-            this.ExcelChangeBtn.Size = new System.Drawing.Size(215, 32);
-            this.ExcelChangeBtn.TabIndex = 9;
-            this.ExcelChangeBtn.Text = "Zmień produkty przez excel";
-            this.ExcelChangeBtn.UseVisualStyleBackColor = false;
-            this.ExcelChangeBtn.Click += new System.EventHandler(this.ExcelChangeBtn_Click);
-            // 
-            // ProdPanel
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(784, 511);
-            this.Controls.Add(this.ExcelChangeBtn);
-            this.Controls.Add(this.DelBtn);
-            this.Controls.Add(this.ImportBtn);
-            this.Controls.Add(this.ExportBtn);
+            this.ClientSize = new System.Drawing.Size(673, 501);
+            this.Controls.Add(this.TemplateBtn);
+            this.Controls.Add(this.ReadyBtn);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.NewProdBtn);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(784, 511);
-            this.Name = "ProdPanel";
-            this.Text = "ProdPanel";
+            this.Controls.Add(this.FodlerBtn);
+            this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(689, 540);
+            this.Name = "AddFromExcel";
+            this.Text = "Dodawanie z excela";
+            this.Load += new System.EventHandler(this.AddFromExcel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button NewProdBtn;
+        private System.Windows.Forms.Button FodlerBtn;
+        private System.Windows.Forms.OpenFileDialog FileDial;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button ExportBtn;
-        private System.Windows.Forms.Button ImportBtn;
-        private System.Windows.Forms.Button DelBtn;
-        private System.Windows.Forms.Button ExcelChangeBtn;
-        private System.Windows.Forms.FolderBrowserDialog FolderForExport;
+        private System.Windows.Forms.Button ReadyBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceCol;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn CheckCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MeasureCol;
+        private System.Windows.Forms.Button TemplateBtn;
+        private System.Windows.Forms.FolderBrowserDialog folderBrow;
     }
 }

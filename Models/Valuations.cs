@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,7 @@ namespace AlDar_1._0.Models
 {
     internal class Valuations
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdVal { get; set; }
         public string NameVal { get; set; }
         public float ValTotalAmount { get; set; }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Products = AlDar_1._0.Models.Products;
 using Status = AlDar_1._0.Common_Class.Status;
+using Excel = AlDar_1._0.Common_Class.Excel;
 
 namespace AlDar_1._0.Window
 {
@@ -13,24 +15,46 @@ namespace AlDar_1._0.Window
         {
             InitializeComponent();
         }
+        #region Methods
         public void DataSync()
         {
-            //Auto clear and set data for datagridview
+            dataGridView1.Rows.Clear();
+            using(var context = new Models.DatabaseContext())
+            {
+                var products = context.Products.Where(p => p.Status == Status.Aktywny).ToList();
+                foreach(var prod in products)
+                {
+                    dataGridView1.Rows.Add();
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value = prod.IdProduct.ToString();
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = prod.Name;
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[2].Value = prod.DefaultPrice.ToString();
+                }
+            }
         }
+        #endregion
+        #region Events
         private void ExportBtn_Click(object sender, EventArgs e)
         {
-            var result = FolderForExport.ShowDialog();
-            if(result == DialogResult.OK)
-            {
-                var path = FolderForExport.SelectedPath;
-                var fileName = DateTime.Now.ToString("Y") + ".xlsx";
-                //Add logic for xlsx save file
+            using (var context = new Models.DatabaseContext()) {
+                var result = FolderForExport.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    var path = FolderForExport.SelectedPath;
+                    var fileName = "Export z dnia: " + DateTime.Now.ToString("Y") + ".xlsx";
+                    var fullPath = path+@"\"+fileName;
+                    Excel excel = new Excel();
+                    if (File.Exists(fullPath))
+                        File.Delete(fullPath);
+                    excel.CreateExcel();
+                    if (!File.Exists(fullPath))
+                        excel.SaveAs(context.Products.Where(p=>p.Status==Status.Aktywny).ToList(), path + @"\" + fileName);
+                }
             }
         }
 
         private void NewProdBtn_Click(object sender, EventArgs e)
         {
-            Window.ProduktAdd Add = new ProduktAdd();
+            AdditionalForm.ProduktAdd Add = new AdditionalForm.ProduktAdd();
             Add.ShowDialog();
             DataSync();
         }
@@ -46,9 +70,22 @@ namespace AlDar_1._0.Window
             }
             foreach(var Id in allId)
             {
-                Products products = new Products();
-                products.Status = Status.Nieaktywny;
+                using(var context = new Models.DatabaseContext())
+                {
+                    context.Products.FirstOrDefault(p => p.IdProduct == Id).Status = Status.Nieaktywny;
+                }
             }
         }
+        private void ImportBtn_Click(object sender, EventArgs e)
+        {
+            var FromExcel = new AdditionalForm.AddFromExcel();
+            FromExcel.ShowDialog();
+            DataSync();
+        }
+        private void ExcelChangeBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

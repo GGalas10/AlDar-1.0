@@ -32,6 +32,10 @@ namespace AlDar_1._0.Window
             Settings.Default.UserName = NameBox.Text.Trim();
             Settings.Default.FirstTime = false;
             Settings.Default.Save();
+            using(var context = new Models.DatabaseContext())
+            {
+                context.Database.Create();
+            }
             Application.Restart();
         }
 

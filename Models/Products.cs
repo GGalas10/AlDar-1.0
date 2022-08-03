@@ -1,20 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Status = AlDar_1._0.Common_Class.Status;
+using Common = AlDar_1._0.Common_Class;
 
 namespace AlDar_1._0.Models
 {
-    internal class Products
+    public class Products
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProduct { get; set; }
         public string Name { get; set; }
         public float DefaultPrice { get; set; }
         public int DefaultQuantity { get; set; }
-        public Status Status { get; set; }
-        
-    }
-    
+        public Common.Status Status { get; set; }
+        public Common.UMeasure Measure { get; set; }
+        public static bool Equals(Products first,Products second)
+        {
+            if (first.Name == second.Name && first.Measure == second.Measure && first.Status == second.Status)
+                return true;
+            else
+                return false;
+        }
+
+    }    
 }
