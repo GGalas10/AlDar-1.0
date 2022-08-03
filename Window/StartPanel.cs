@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Settings = AlDar_1._0.Properties.Settings;
 namespace AlDar_1._0.Window
 {
     public partial class StartPanel : Form
@@ -19,14 +14,18 @@ namespace AlDar_1._0.Window
 
         private void StartPanel_Load(object sender, EventArgs e)
         {
-            HomeLbl.Text = "Witaj {użytkownik}.\nDzisiaj jest " + DateTime.Now.ToString("d")
-                +".\nŁacznie posiadasz {val.count} wycen." +
-                "\nDzisiaj zostało dodanych{val.where.count} wycen" +
-                "\nOstatnia wycena była dla {val.lastindex.name}" +
-                "\n";
-            VerLbl.Text = ("Wersja aplikacji " + AlDar_1._0.Properties.Settings.Default.Version);
-            VerLbl.Location = new Point(780 - VerLbl.Size.Width, 480);
-
+            using (var context = new Models.DatabaseContext())
+            {
+                HomeLbl.Text = "Witaj "+Settings.Default.UserName+
+                    ".\nDzisiaj jest " + DateTime.Now.ToString("d")+
+                    ".\nŁacznie posiadasz +context.Valuations.Count()+ wycen." +
+                    "\nDzisiaj zostało dodanych+context.Valuations.Where(v=>v.AddDate == DateTime.Now+ wycen" +
+                    "\nOstatnia wycena była dla {val.lastindex.name}"
+                    +/*context.Valuations.FirstOrDefault(v=>v.IdVal == context.Valuations.Count()-1) +*/
+                    "\n";
+                VerLbl.Text = ("Wersja aplikacji " + AlDar_1._0.Properties.Settings.Default.Version);
+                VerLbl.Location = new Point(780 - VerLbl.Size.Width, 480);
+            }
 
         }
     }

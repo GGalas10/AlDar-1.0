@@ -53,13 +53,14 @@
             // 
             this.ProdBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ProdBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ProdBtn.BackColor = System.Drawing.Color.DimGray;
+            this.ProdBtn.BackColor = System.Drawing.Color.Black;
+            this.ProdBtn.FlatAppearance.BorderSize = 0;
             this.ProdBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProdBtn.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
             this.ProdBtn.ForeColor = System.Drawing.Color.White;
             this.ProdBtn.Image = ((System.Drawing.Image)(resources.GetObject("ProdBtn.Image")));
             this.ProdBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ProdBtn.Location = new System.Drawing.Point(466, 0);
+            this.ProdBtn.Location = new System.Drawing.Point(472, 0);
             this.ProdBtn.Name = "ProdBtn";
             this.ProdBtn.Size = new System.Drawing.Size(150, 50);
             this.ProdBtn.TabIndex = 2;
@@ -71,7 +72,8 @@
             // 
             this.ValBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ValBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ValBtn.BackColor = System.Drawing.Color.DimGray;
+            this.ValBtn.BackColor = System.Drawing.Color.Black;
+            this.ValBtn.FlatAppearance.BorderSize = 0;
             this.ValBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ValBtn.Font = new System.Drawing.Font("Palatino Linotype", 14.25F);
             this.ValBtn.ForeColor = System.Drawing.Color.White;
@@ -89,13 +91,14 @@
             // 
             this.HomeBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.HomeBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.HomeBtn.BackColor = System.Drawing.Color.DimGray;
+            this.HomeBtn.BackColor = System.Drawing.Color.Black;
+            this.HomeBtn.FlatAppearance.BorderSize = 0;
             this.HomeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.HomeBtn.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.HomeBtn.ForeColor = System.Drawing.Color.White;
             this.HomeBtn.Image = ((System.Drawing.Image)(resources.GetObject("HomeBtn.Image")));
             this.HomeBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.HomeBtn.Location = new System.Drawing.Point(166, 0);
+            this.HomeBtn.Location = new System.Drawing.Point(160, 0);
             this.HomeBtn.Name = "HomeBtn";
             this.HomeBtn.Size = new System.Drawing.Size(150, 50);
             this.HomeBtn.TabIndex = 0;
@@ -118,6 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

@@ -63,9 +63,11 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 150);
             this.pictureBox1.TabIndex = 0;
@@ -74,18 +76,21 @@
             // HomeLbl
             // 
             this.HomeLbl.AutoSize = true;
+            this.HomeLbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.HomeLbl.ForeColor = System.Drawing.Color.Black;
             this.HomeLbl.Location = new System.Drawing.Point(12, 165);
             this.HomeLbl.Name = "HomeLbl";
-            this.HomeLbl.Size = new System.Drawing.Size(0, 13);
+            this.HomeLbl.Size = new System.Drawing.Size(0, 19);
             this.HomeLbl.TabIndex = 1;
             // 
             // VerLbl
             // 
             this.VerLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.VerLbl.AutoSize = true;
-            this.VerLbl.Location = new System.Drawing.Point(640, 478);
+            this.VerLbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.VerLbl.Location = new System.Drawing.Point(640, 489);
             this.VerLbl.Name = "VerLbl";
-            this.VerLbl.Size = new System.Drawing.Size(0, 13);
+            this.VerLbl.Size = new System.Drawing.Size(0, 16);
             this.VerLbl.TabIndex = 2;
             // 
             // StartPanel
@@ -94,12 +99,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(784, 500);
+            this.ClientSize = new System.Drawing.Size(784, 511);
             this.Controls.Add(this.VerLbl);
             this.Controls.Add(this.HomeLbl);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(784, 500);
+            this.MinimumSize = new System.Drawing.Size(784, 511);
             this.Name = "StartPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.StartPanel_Load);

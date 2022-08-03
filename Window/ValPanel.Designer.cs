@@ -33,6 +33,10 @@
             this.ArchiveBtn = new System.Windows.Forms.Button();
             this.DelBtn = new System.Windows.Forms.Button();
             this.DoneBtn = new System.Windows.Forms.Button();
+            this.IdCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PricCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CheckCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,10 +63,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdCol,
+            this.NameCol,
+            this.PricCol,
+            this.CheckCol});
             this.dataGridView1.Location = new System.Drawing.Point(12, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(760, 447);
+            this.dataGridView1.Size = new System.Drawing.Size(760, 458);
             this.dataGridView1.TabIndex = 4;
             // 
             // ArchiveBtn
@@ -110,20 +119,54 @@
             this.DoneBtn.Text = "Zrealizuj wycenę";
             this.DoneBtn.UseVisualStyleBackColor = false;
             // 
+            // IdCol
+            // 
+            this.IdCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IdCol.FillWeight = 50F;
+            this.IdCol.HeaderText = "Id";
+            this.IdCol.MinimumWidth = 50;
+            this.IdCol.Name = "IdCol";
+            this.IdCol.ReadOnly = true;
+            // 
+            // NameCol
+            // 
+            this.NameCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NameCol.HeaderText = "Nazwa Wyceny";
+            this.NameCol.MinimumWidth = 100;
+            this.NameCol.Name = "NameCol";
+            this.NameCol.ReadOnly = true;
+            // 
+            // PricCol
+            // 
+            this.PricCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PricCol.HeaderText = "Suma";
+            this.PricCol.MinimumWidth = 100;
+            this.PricCol.Name = "PricCol";
+            this.PricCol.ReadOnly = true;
+            // 
+            // CheckCol
+            // 
+            this.CheckCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CheckCol.FillWeight = 50F;
+            this.CheckCol.HeaderText = "Zaznacz";
+            this.CheckCol.MinimumWidth = 50;
+            this.CheckCol.Name = "CheckCol";
+            this.CheckCol.ReadOnly = true;
+            // 
             // ValPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(784, 500);
+            this.ClientSize = new System.Drawing.Size(784, 511);
             this.Controls.Add(this.DoneBtn);
             this.Controls.Add(this.DelBtn);
             this.Controls.Add(this.ArchiveBtn);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.AddBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(784, 500);
+            this.MinimumSize = new System.Drawing.Size(784, 511);
             this.Name = "ValPanel";
             this.Text = "ValPanel";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -138,5 +181,9 @@
         private System.Windows.Forms.Button ArchiveBtn;
         private System.Windows.Forms.Button DelBtn;
         private System.Windows.Forms.Button DoneBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PricCol;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn CheckCol;
     }
 }

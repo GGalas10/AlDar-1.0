@@ -10,15 +10,19 @@ namespace AlDar_1._0
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {          
             if (Settings.Default.FirstTime)
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainMenu());
+                Application.Run(new Window.FirstTimePanel());
             }
             else
             {
+                using (var context = new Models.DatabaseContext())
+                {
+                    context.Database.Connection.OpenAsync();
+                }
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainMenu());

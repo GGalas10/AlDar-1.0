@@ -34,15 +34,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.NewProdBtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.IdCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CheckCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ExportBtn = new System.Windows.Forms.Button();
             this.ImportBtn = new System.Windows.Forms.Button();
             this.DelBtn = new System.Windows.Forms.Button();
             this.ExcelChangeBtn = new System.Windows.Forms.Button();
             this.FolderForExport = new System.Windows.Forms.FolderBrowserDialog();
-            this.IdCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CheckCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,70 +80,8 @@
             this.dataGridView1.MinimumSize = new System.Drawing.Size(481, 426);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(539, 476);
+            this.dataGridView1.Size = new System.Drawing.Size(539, 487);
             this.dataGridView1.TabIndex = 4;
-            // 
-            // ExportBtn
-            // 
-            this.ExportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ExportBtn.BackColor = System.Drawing.Color.Black;
-            this.ExportBtn.FlatAppearance.BorderSize = 0;
-            this.ExportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExportBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ExportBtn.ForeColor = System.Drawing.Color.White;
-            this.ExportBtn.Location = new System.Drawing.Point(12, 50);
-            this.ExportBtn.Name = "ExportBtn";
-            this.ExportBtn.Size = new System.Drawing.Size(215, 32);
-            this.ExportBtn.TabIndex = 6;
-            this.ExportBtn.Text = "Exportuj pliki do excela";
-            this.ExportBtn.UseVisualStyleBackColor = false;
-            this.ExportBtn.Click += new System.EventHandler(this.ExportBtn_Click);
-            // 
-            // ImportBtn
-            // 
-            this.ImportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ImportBtn.BackColor = System.Drawing.Color.Black;
-            this.ImportBtn.FlatAppearance.BorderSize = 0;
-            this.ImportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ImportBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ImportBtn.ForeColor = System.Drawing.Color.White;
-            this.ImportBtn.Location = new System.Drawing.Point(12, 456);
-            this.ImportBtn.Name = "ImportBtn";
-            this.ImportBtn.Size = new System.Drawing.Size(215, 32);
-            this.ImportBtn.TabIndex = 7;
-            this.ImportBtn.Text = "Dodaj produkty z excela";
-            this.ImportBtn.UseVisualStyleBackColor = false;
-            // 
-            // DelBtn
-            // 
-            this.DelBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DelBtn.BackColor = System.Drawing.Color.Black;
-            this.DelBtn.FlatAppearance.BorderSize = 0;
-            this.DelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DelBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DelBtn.ForeColor = System.Drawing.Color.White;
-            this.DelBtn.Location = new System.Drawing.Point(12, 88);
-            this.DelBtn.Name = "DelBtn";
-            this.DelBtn.Size = new System.Drawing.Size(215, 32);
-            this.DelBtn.TabIndex = 8;
-            this.DelBtn.Text = "Usuń wybrane produkty\r\n";
-            this.DelBtn.UseVisualStyleBackColor = false;
-            this.DelBtn.Click += new System.EventHandler(this.DelBtn_Click);
-            // 
-            // ExcelChangeBtn
-            // 
-            this.ExcelChangeBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ExcelChangeBtn.BackColor = System.Drawing.Color.Black;
-            this.ExcelChangeBtn.FlatAppearance.BorderSize = 0;
-            this.ExcelChangeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExcelChangeBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ExcelChangeBtn.ForeColor = System.Drawing.Color.White;
-            this.ExcelChangeBtn.Location = new System.Drawing.Point(12, 418);
-            this.ExcelChangeBtn.Name = "ExcelChangeBtn";
-            this.ExcelChangeBtn.Size = new System.Drawing.Size(215, 32);
-            this.ExcelChangeBtn.TabIndex = 9;
-            this.ExcelChangeBtn.Text = "Zmień produkty przez excel";
-            this.ExcelChangeBtn.UseVisualStyleBackColor = false;
             // 
             // IdCol
             // 
@@ -217,13 +155,75 @@
             this.CheckCol.Name = "CheckCol";
             this.CheckCol.ReadOnly = true;
             // 
+            // ExportBtn
+            // 
+            this.ExportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ExportBtn.BackColor = System.Drawing.Color.Black;
+            this.ExportBtn.FlatAppearance.BorderSize = 0;
+            this.ExportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExportBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ExportBtn.ForeColor = System.Drawing.Color.White;
+            this.ExportBtn.Location = new System.Drawing.Point(12, 50);
+            this.ExportBtn.Name = "ExportBtn";
+            this.ExportBtn.Size = new System.Drawing.Size(215, 32);
+            this.ExportBtn.TabIndex = 6;
+            this.ExportBtn.Text = "Exportuj pliki do excela";
+            this.ExportBtn.UseVisualStyleBackColor = false;
+            this.ExportBtn.Click += new System.EventHandler(this.ExportBtn_Click);
+            // 
+            // ImportBtn
+            // 
+            this.ImportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ImportBtn.BackColor = System.Drawing.Color.Black;
+            this.ImportBtn.FlatAppearance.BorderSize = 0;
+            this.ImportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ImportBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ImportBtn.ForeColor = System.Drawing.Color.White;
+            this.ImportBtn.Location = new System.Drawing.Point(12, 456);
+            this.ImportBtn.Name = "ImportBtn";
+            this.ImportBtn.Size = new System.Drawing.Size(215, 32);
+            this.ImportBtn.TabIndex = 7;
+            this.ImportBtn.Text = "Dodaj produkty z excela";
+            this.ImportBtn.UseVisualStyleBackColor = false;
+            // 
+            // DelBtn
+            // 
+            this.DelBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DelBtn.BackColor = System.Drawing.Color.Black;
+            this.DelBtn.FlatAppearance.BorderSize = 0;
+            this.DelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DelBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DelBtn.ForeColor = System.Drawing.Color.White;
+            this.DelBtn.Location = new System.Drawing.Point(12, 88);
+            this.DelBtn.Name = "DelBtn";
+            this.DelBtn.Size = new System.Drawing.Size(215, 32);
+            this.DelBtn.TabIndex = 8;
+            this.DelBtn.Text = "Usuń wybrane produkty\r\n";
+            this.DelBtn.UseVisualStyleBackColor = false;
+            this.DelBtn.Click += new System.EventHandler(this.DelBtn_Click);
+            // 
+            // ExcelChangeBtn
+            // 
+            this.ExcelChangeBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ExcelChangeBtn.BackColor = System.Drawing.Color.Black;
+            this.ExcelChangeBtn.FlatAppearance.BorderSize = 0;
+            this.ExcelChangeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExcelChangeBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ExcelChangeBtn.ForeColor = System.Drawing.Color.White;
+            this.ExcelChangeBtn.Location = new System.Drawing.Point(12, 418);
+            this.ExcelChangeBtn.Name = "ExcelChangeBtn";
+            this.ExcelChangeBtn.Size = new System.Drawing.Size(215, 32);
+            this.ExcelChangeBtn.TabIndex = 9;
+            this.ExcelChangeBtn.Text = "Zmień produkty przez excel";
+            this.ExcelChangeBtn.UseVisualStyleBackColor = false;
+            // 
             // ProdPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(784, 500);
+            this.ClientSize = new System.Drawing.Size(784, 511);
             this.Controls.Add(this.ExcelChangeBtn);
             this.Controls.Add(this.DelBtn);
             this.Controls.Add(this.ImportBtn);
@@ -231,7 +231,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.NewProdBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(784, 500);
+            this.MinimumSize = new System.Drawing.Size(784, 511);
             this.Name = "ProdPanel";
             this.Text = "ProdPanel";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

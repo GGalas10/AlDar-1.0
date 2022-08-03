@@ -35,12 +35,15 @@ namespace AlDar_1._0.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Aldar\\Database\\")]
         public string DbPath {
             get {
                 return ((string)(this["DbPath"]));
+            }
+            set {
+                this["DbPath"] = value;
             }
         }
         
@@ -67,13 +70,13 @@ namespace AlDar_1._0.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Ustawienie {
+        [global::System.Configuration.DefaultSettingValueAttribute("Admin")]
+        public string UserName {
             get {
-                return ((string)(this["Ustawienie"]));
+                return ((string)(this["UserName"]));
             }
             set {
-                this["Ustawienie"] = value;
+                this["UserName"] = value;
             }
         }
     }

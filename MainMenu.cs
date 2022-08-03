@@ -26,6 +26,9 @@ namespace AlDar_1._0
             this.panel2.Controls.Add(ActiveForm);
             ActiveForm.Dock = DockStyle.Fill;
             ActiveForm.Show();
+            this.ProdBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveForm);
+            this.ValBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveForm);
+            this.HomeBtn.Click += new System.EventHandler(this.Click) + new System.EventHandler(this.SetActiveForm);
         }
 
         /// <summary>
@@ -82,7 +85,7 @@ namespace AlDar_1._0
         {
             if (ClickBtn != null)
             {
-                ClickBtn.BackColor = Color.DimGray;
+                ClickBtn.BackColor = Color.Black;
                 ClickBtn.Font = new Font("Palatino Linotype", 14.25f);
                 ClickBtn.ForeColor = Color.White;                
             }
@@ -91,6 +94,7 @@ namespace AlDar_1._0
             ClickBtn.Font = new Font("Palatino Linotype", 15f, FontStyle.Bold);
             ClickBtn.ForeColor = Color.DimGray;
         }
+
     }
     
 }
