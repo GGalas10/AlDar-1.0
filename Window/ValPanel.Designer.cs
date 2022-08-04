@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.AddBtn = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ArchiveBtn = new System.Windows.Forms.Button();
-            this.DelBtn = new System.Windows.Forms.Button();
-            this.DoneBtn = new System.Windows.Forms.Button();
             this.IdCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PricCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CheckCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ArchiveBtn = new System.Windows.Forms.Button();
+            this.DelBtn = new System.Windows.Forms.Button();
+            this.DoneBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +66,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdCol,
@@ -70,9 +75,75 @@
             this.CheckCol});
             this.dataGridView1.Location = new System.Drawing.Point(12, 41);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(760, 458);
             this.dataGridView1.TabIndex = 4;
+            // 
+            // IdCol
+            // 
+            this.IdCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.IdCol.DefaultCellStyle = dataGridViewCellStyle1;
+            this.IdCol.FillWeight = 50F;
+            this.IdCol.HeaderText = "Id";
+            this.IdCol.MinimumWidth = 50;
+            this.IdCol.Name = "IdCol";
+            // 
+            // NameCol
+            // 
+            this.NameCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.NameCol.DefaultCellStyle = dataGridViewCellStyle2;
+            this.NameCol.HeaderText = "Nazwa Wyceny";
+            this.NameCol.MinimumWidth = 100;
+            this.NameCol.Name = "NameCol";
+            // 
+            // PricCol
+            // 
+            this.PricCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.PricCol.DefaultCellStyle = dataGridViewCellStyle3;
+            this.PricCol.HeaderText = "Suma";
+            this.PricCol.MinimumWidth = 100;
+            this.PricCol.Name = "PricCol";
+            // 
+            // CheckCol
+            // 
+            this.CheckCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.NullValue = false;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CheckCol.DefaultCellStyle = dataGridViewCellStyle4;
+            this.CheckCol.FillWeight = 50F;
+            this.CheckCol.HeaderText = "Zaznacz";
+            this.CheckCol.MinimumWidth = 50;
+            this.CheckCol.Name = "CheckCol";
             // 
             // ArchiveBtn
             // 
@@ -101,7 +172,7 @@
             this.DelBtn.Name = "DelBtn";
             this.DelBtn.Size = new System.Drawing.Size(145, 23);
             this.DelBtn.TabIndex = 6;
-            this.DelBtn.Text = "Usuń wycenę";
+            this.DelBtn.Text = "Archiwizuj";
             this.DelBtn.UseVisualStyleBackColor = false;
             // 
             // DoneBtn
@@ -118,40 +189,6 @@
             this.DoneBtn.TabIndex = 7;
             this.DoneBtn.Text = "Zrealizuj wycenę";
             this.DoneBtn.UseVisualStyleBackColor = false;
-            // 
-            // IdCol
-            // 
-            this.IdCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IdCol.FillWeight = 50F;
-            this.IdCol.HeaderText = "Id";
-            this.IdCol.MinimumWidth = 50;
-            this.IdCol.Name = "IdCol";
-            this.IdCol.ReadOnly = true;
-            // 
-            // NameCol
-            // 
-            this.NameCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NameCol.HeaderText = "Nazwa Wyceny";
-            this.NameCol.MinimumWidth = 100;
-            this.NameCol.Name = "NameCol";
-            this.NameCol.ReadOnly = true;
-            // 
-            // PricCol
-            // 
-            this.PricCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PricCol.HeaderText = "Suma";
-            this.PricCol.MinimumWidth = 100;
-            this.PricCol.Name = "PricCol";
-            this.PricCol.ReadOnly = true;
-            // 
-            // CheckCol
-            // 
-            this.CheckCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CheckCol.FillWeight = 50F;
-            this.CheckCol.HeaderText = "Zaznacz";
-            this.CheckCol.MinimumWidth = 50;
-            this.CheckCol.Name = "CheckCol";
-            this.CheckCol.ReadOnly = true;
             // 
             // ValPanel
             // 

@@ -78,6 +78,12 @@
     <Compile Include="Window\AdditionalForm\AddFromExcel.Designer.cs">
       <DependentUpon>AddFromExcel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Window\AdditionalForm\AddVal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\AdditionalForm\AddVal.Designer.cs">
+      <DependentUpon>AddVal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Window\AdditionalForm\ChangeFromExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </Compile>
     <EmbeddedResource Include="Window\AdditionalForm\AddFromExcel.resx">
       <DependentUpon>AddFromExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\AdditionalForm\AddVal.resx">
+      <DependentUpon>AddVal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\AdditionalForm\ChangeFromExcel.resx">
       <DependentUpon>ChangeFromExcel.cs</DependentUpon>
