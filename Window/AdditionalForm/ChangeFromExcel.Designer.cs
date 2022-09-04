@@ -49,6 +49,7 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoneBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DbGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExportGridView)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +70,7 @@
             this.PriceCol,
             this.MeasureCol});
             this.DbGridView.Location = new System.Drawing.Point(13, 48);
-            this.DbGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DbGridView.Margin = new System.Windows.Forms.Padding(4);
             this.DbGridView.MultiSelect = false;
             this.DbGridView.Name = "DbGridView";
             this.DbGridView.ReadOnly = true;
@@ -264,12 +265,27 @@
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // DoneBtn
+            // 
+            this.DoneBtn.BackColor = System.Drawing.Color.Black;
+            this.DoneBtn.FlatAppearance.BorderSize = 0;
+            this.DoneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DoneBtn.ForeColor = System.Drawing.Color.White;
+            this.DoneBtn.Location = new System.Drawing.Point(915, 12);
+            this.DoneBtn.Name = "DoneBtn";
+            this.DoneBtn.Size = new System.Drawing.Size(120, 29);
+            this.DoneBtn.TabIndex = 9;
+            this.DoneBtn.Text = "Akceptuje";
+            this.DoneBtn.UseVisualStyleBackColor = false;
+            this.DoneBtn.Click += new System.EventHandler(this.DoneBtn_Click);
+            // 
             // ChangeFromExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1048, 660);
+            this.Controls.Add(this.DoneBtn);
             this.Controls.Add(this.ExportGridView);
             this.Controls.Add(this.FodlerBtn);
             this.Controls.Add(this.DbGridView);
@@ -299,5 +315,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Button DoneBtn;
     }
 }
