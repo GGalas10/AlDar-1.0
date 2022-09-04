@@ -60,12 +60,11 @@ namespace AlDar_1._0.Window.AdditionalForm
                         MessageBoxIcon.Question); ;
                     if(result == DialogResult.Yes)
                     {
-                        MessageBox.Show("Jam dodał Ci produkta zią :D");
-                        /*context.Products.Add(products);
+                        context.Products.Add(products);
                         if (context.SaveChanges() > 0)
                         {
                             this.Close();
-                        }*/
+                        }
                     }
                 }
             }
