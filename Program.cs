@@ -27,9 +27,10 @@ namespace AlDar_1._0
             //    Application.SetCompatibleTextRenderingDefault(false);
             //    Application.Run(new MainMenu());
             //}
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Window.AdditionalForm.AddVal());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Window.AdditionalForm.AddVal());
+            Common_Class.PDFCreator.CreatePDF("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum");
         }
     }
 }
