@@ -164,6 +164,10 @@ namespace AlDar_1._0.Window.AdditionalForm
             {
                 if (textDouble <= 0)
                 {
+                    var pt = dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+                    ToolTip tip = new ToolTip();
+                    tip.IsBalloon = true;
+                    tip.Show("Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19", this, pt.Left + ((pt.Right - pt.Left) / 2), pt.Bottom, 2000);
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19";
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
                     return;
@@ -174,6 +178,10 @@ namespace AlDar_1._0.Window.AdditionalForm
             {
                 if (textFloat <= 0)
                 {
+                    var pt = dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+                    ToolTip tip = new ToolTip();
+                    tip.IsBalloon = true;
+                    tip.Show("Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19", this, pt.Left + ((pt.Right - pt.Left) / 2), pt.Bottom, 2000);
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19";
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
                     return;

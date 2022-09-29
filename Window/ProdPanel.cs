@@ -60,7 +60,7 @@ namespace AlDar_1._0.Window
         }
         private void NewProdBtn_Click(object sender, EventArgs e)
         {
-            AdditionalForm.ProduktAdd Add = new AdditionalForm.ProduktAdd();
+            ProduktAdd Add = new ProduktAdd();
             Add.ShowDialog();
             DataSync();
         }
@@ -108,14 +108,12 @@ namespace AlDar_1._0.Window
         {
             DataSync();
         }
-
-        #endregion
-
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var view = new ProdView(int.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString()));
             view.ShowDialog();
             DataSync();
         }
+        #endregion
     }
 }
