@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AlDar_1._0.Window;
+using AlDar_1._0.Window.AdditionalForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -55,12 +57,12 @@ namespace AlDar_1._0
                     break;
                 case "ValBtn":
                     ActiveForm.Hide();
-                    ActiveForm = new Window.ValPanel();
+                    ActiveForm = new Window.ValPanel(this);
                     ActiveForm.TopLevel = false;
                     ActiveForm.Dock = DockStyle.Fill;
                     this.panel2.Controls.Add(ActiveForm);
                     ActiveForm.Show();
-                    this.Text = "Wyceny";
+                    this.Text = "Nowe wyceny";
                     break;
                 case "ProdBtn":
                     ActiveForm.Hide();
@@ -94,7 +96,6 @@ namespace AlDar_1._0
             ClickBtn.Font = new Font("Palatino Linotype", 15f, FontStyle.Bold);
             ClickBtn.ForeColor = Color.DimGray;
         }
-
     }
     
 }

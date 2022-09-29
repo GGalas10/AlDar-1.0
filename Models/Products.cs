@@ -9,7 +9,7 @@ using Common = AlDar_1._0.Common_Class;
 
 namespace AlDar_1._0.Models
 {
-    public class Products
+    public class BaseProducts
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProduct { get; set; }
@@ -18,7 +18,7 @@ namespace AlDar_1._0.Models
         public int DefaultQuantity { get; set; }
         public Common.Status Status { get; set; }
         public Common.UMeasure Measure { get; set; }
-        public static bool Equals(Products first,Products second)
+        public static bool Equals(BaseProducts first, BaseProducts second)
         {
             if (first.Name == second.Name && first.Measure == second.Measure && first.Status == second.Status)
                 return true;
@@ -26,5 +26,22 @@ namespace AlDar_1._0.Models
                 return false;
         }
 
-    }    
+    }
+    public class EditProducts
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdProduct { get; set; }
+        public string Name { get; set; }
+        public float DefaultPrice { get; set; }
+        public float DefaultQuantity { get; set; }
+        public Common.Status Status { get; set; }
+        public Common.UMeasure Measure { get; set; }
+        public static bool Equals(BaseProducts first, BaseProducts second)
+        {
+            if (first.Name == second.Name && first.Measure == second.Measure && first.Status == second.Status)
+                return true;
+            else
+                return false;
+        }
+    }
 }

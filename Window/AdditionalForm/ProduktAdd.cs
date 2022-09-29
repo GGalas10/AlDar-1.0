@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlDar_1._0.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,11 +21,11 @@ namespace AlDar_1._0.Window.AdditionalForm
         private void AddBtn_Click(object sender, EventArgs e)
         {
             
-            using (var context = new Models.DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 if (!string.IsNullOrEmpty(PriceBox.Text) && !string.IsNullOrEmpty(NameBox.Text) && !string.IsNullOrEmpty(MeasureCombo.Text))
                 {
-                    Models.Products products = new Models.Products();
+                    var products = new BaseProducts();
                     products.Name = NameBox.Text;
                     products.DefaultPrice = (float)Math.Round(double.Parse(PriceBox.Text),2);
                     products.DefaultQuantity = 1;

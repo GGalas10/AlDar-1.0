@@ -1,6 +1,6 @@
 ﻿namespace AlDar_1._0.Window.AdditionalForm
 {
-    partial class AddVal
+    partial class ValView
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddVal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ValView));
             this.NameLbl = new System.Windows.Forms.Label();
             this.NameValBox = new System.Windows.Forms.TextBox();
             this.TimeLbl = new System.Windows.Forms.Label();
@@ -53,6 +53,7 @@
             this.PriceLbl = new System.Windows.Forms.Label();
             this.PreviewBtn = new System.Windows.Forms.Button();
             this.AddProdBtn = new System.Windows.Forms.Button();
+            this.EditBtn = new System.Windows.Forms.Button();
             this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +80,7 @@
             // 
             // NameValBox
             // 
+            this.NameValBox.Enabled = false;
             this.NameValBox.Location = new System.Drawing.Point(81, 8);
             this.NameValBox.Margin = new System.Windows.Forms.Padding(4);
             this.NameValBox.MaxLength = 100;
@@ -138,6 +140,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.Location = new System.Drawing.Point(12, 41);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -160,6 +163,7 @@
             // 
             this.SavePDFBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SavePDFBtn.BackColor = System.Drawing.Color.Black;
+            this.SavePDFBtn.Enabled = false;
             this.SavePDFBtn.FlatAppearance.BorderSize = 0;
             this.SavePDFBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SavePDFBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
@@ -170,22 +174,25 @@
             this.SavePDFBtn.TabIndex = 5;
             this.SavePDFBtn.Text = "Zapisz z plikiem PDF";
             this.SavePDFBtn.UseVisualStyleBackColor = false;
+            this.SavePDFBtn.Visible = false;
             this.SavePDFBtn.Click += new System.EventHandler(this.SavePDFBtn_Click);
             // 
             // SaveBtn
             // 
             this.SaveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SaveBtn.BackColor = System.Drawing.Color.Black;
+            this.SaveBtn.Enabled = false;
             this.SaveBtn.FlatAppearance.BorderSize = 0;
             this.SaveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.SaveBtn.ForeColor = System.Drawing.Color.White;
-            this.SaveBtn.Location = new System.Drawing.Point(421, 447);
+            this.SaveBtn.Location = new System.Drawing.Point(446, 447);
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Size = new System.Drawing.Size(100, 56);
             this.SaveBtn.TabIndex = 4;
             this.SaveBtn.Text = "Zapisz";
             this.SaveBtn.UseVisualStyleBackColor = false;
+            this.SaveBtn.Visible = false;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // CancelBtn
@@ -272,7 +279,7 @@
             this.PreviewBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PreviewBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.PreviewBtn.ForeColor = System.Drawing.Color.White;
-            this.PreviewBtn.Location = new System.Drawing.Point(164, 447);
+            this.PreviewBtn.Location = new System.Drawing.Point(118, 447);
             this.PreviewBtn.Name = "PreviewBtn";
             this.PreviewBtn.Size = new System.Drawing.Size(100, 56);
             this.PreviewBtn.TabIndex = 7;
@@ -283,6 +290,7 @@
             // AddProdBtn
             // 
             this.AddProdBtn.BackColor = System.Drawing.Color.Black;
+            this.AddProdBtn.Enabled = false;
             this.AddProdBtn.FlatAppearance.BorderSize = 0;
             this.AddProdBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddProdBtn.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold);
@@ -293,12 +301,30 @@
             this.AddProdBtn.TabIndex = 8;
             this.AddProdBtn.Text = "Dodaj produkt";
             this.AddProdBtn.UseVisualStyleBackColor = false;
+            this.AddProdBtn.Visible = false;
             this.AddProdBtn.Click += new System.EventHandler(this.AddProdBtn_Click);
+            // 
+            // EditBtn
+            // 
+            this.EditBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.EditBtn.BackColor = System.Drawing.Color.Black;
+            this.EditBtn.FlatAppearance.BorderSize = 0;
+            this.EditBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EditBtn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
+            this.EditBtn.ForeColor = System.Drawing.Color.White;
+            this.EditBtn.Location = new System.Drawing.Point(282, 447);
+            this.EditBtn.Name = "EditBtn";
+            this.EditBtn.Size = new System.Drawing.Size(100, 56);
+            this.EditBtn.TabIndex = 9;
+            this.EditBtn.Text = "Edytuj";
+            this.EditBtn.UseVisualStyleBackColor = false;
+            this.EditBtn.Click += new System.EventHandler(this.EditBtn_Click);
             // 
             // ProductId
             // 
             this.ProductId.HeaderText = "";
             this.ProductId.Name = "ProductId";
+            this.ProductId.ReadOnly = true;
             this.ProductId.Visible = false;
             // 
             // IdCol
@@ -338,6 +364,7 @@
             this.NameCol.MaxInputLength = 50;
             this.NameCol.MinimumWidth = 20;
             this.NameCol.Name = "NameCol";
+            this.NameCol.ReadOnly = true;
             this.NameCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // PriceCol
@@ -358,6 +385,7 @@
             this.PriceCol.HeaderText = "Cena jednostkowa";
             this.PriceCol.MinimumWidth = 20;
             this.PriceCol.Name = "PriceCol";
+            this.PriceCol.ReadOnly = true;
             this.PriceCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // QCol
@@ -378,6 +406,7 @@
             this.QCol.HeaderText = "Ilość";
             this.QCol.MinimumWidth = 20;
             this.QCol.Name = "QCol";
+            this.QCol.ReadOnly = true;
             this.QCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MesCol
@@ -397,6 +426,7 @@
             this.MesCol.HeaderText = "J.M.";
             this.MesCol.MinimumWidth = 20;
             this.MesCol.Name = "MesCol";
+            this.MesCol.ReadOnly = true;
             this.MesCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // TotalPrice
@@ -434,14 +464,16 @@
             this.DelCol.HeaderText = "Usuń";
             this.DelCol.MinimumWidth = 20;
             this.DelCol.Name = "DelCol";
+            this.DelCol.ReadOnly = true;
             this.DelCol.Text = "X";
             // 
-            // AddVal
+            // ValView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(684, 515);
+            this.Controls.Add(this.EditBtn);
             this.Controls.Add(this.AddProdBtn);
             this.Controls.Add(this.PreviewBtn);
             this.Controls.Add(this.dataGridView2);
@@ -457,7 +489,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.MinimumSize = new System.Drawing.Size(700, 554);
-            this.Name = "AddVal";
+            this.Name = "ValView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dodawanie Wyceny";
             this.Load += new System.EventHandler(this.AddVal_Load);
@@ -484,6 +516,7 @@
         private System.Windows.Forms.Label PriceLbl;
         private System.Windows.Forms.Button PreviewBtn;
         private System.Windows.Forms.Button AddProdBtn;
+        private System.Windows.Forms.Button EditBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductId;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameCol;

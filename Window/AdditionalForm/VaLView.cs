@@ -1,4 +1,5 @@
 ﻿using AlDar_1._0.Models;
+using MessBox;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,22 +7,21 @@ using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using TextBox = System.Windows.Forms.TextBox;
-using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace AlDar_1._0.Window.AdditionalForm
 {
-    public partial class AddVal : Form
+    public partial class ValView : Form
     {
         #region Variable
+        Valuations _Val;
         double price =0;
         int rowIndex,colindex;
         List<BaseProducts> prodlist = new List<BaseProducts>();
         List<BaseProducts> temp = new List<BaseProducts>();
-        List<BaseProducts> checkList = new List<BaseProducts>();
         #endregion
-        public AddVal()
+        internal ValView(Valuations val)
         {
+            _Val = val;
             InitializeComponent();
         }
         #region Events
@@ -33,15 +33,29 @@ namespace AlDar_1._0.Window.AdditionalForm
         }
         private void AddVal_Load(object sender, EventArgs e)
         {
+            using (var context = new DatabaseContext())
+            {
+            var prod = context.Valuations.FirstOrDefault(val=>val.IdVal == _Val.IdVal);
             DataSync();
+            PriceLbl.Text = "Cena brutto: " + _Val.ValTotalAmount.ToString() + " zł";
+            NameValBox.Text = _Val.NameVal;
+            foreach(var item in prod.Productes)
+            {
+                dataGridView1.Rows.Add(item.IdProduct, dataGridView1.Rows.Count, item.Name, item.DefaultPrice, item.DefaultQuantity, item.Measure, item.DefaultPrice * item.DefaultQuantity);
+            }
+        }
+
         }       
         private void PreviewBtn_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(NameValBox.Text))
             {
-                Valuations newValuation = new Valuations();
-                newValuation = CreateNewValuation();
-                Common_Class.PDFCreator.PreviewPDF(newValuation.NameVal, newValuation);
+                CreateNewValuation();
+                using (var context = new DatabaseContext())
+                {
+                    var editval = context.Valuations.FirstOrDefault(v => v.IdVal == _Val.IdVal);
+                    Common_Class.PDFCreator.PreviewPDF(editval.NameVal, editval);
+                }
             }         
         }
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -116,7 +130,7 @@ namespace AlDar_1._0.Window.AdditionalForm
             var DataRows = dataGridView1.Rows;
                 foreach (DataGridViewRow Row in DataRows)
                 {
-                    if (Row.Cells[0].Value == null && Row.Index < dataGridView1.NewRowIndex-1)
+                    if (Row.Cells[0].Value == null && Row.Index < e.Row.Index-1)
                     {
                         dataGridView1.Rows.Remove(Row);
                     }
@@ -150,24 +164,16 @@ namespace AlDar_1._0.Window.AdditionalForm
             {
                 if (textDouble <= 0)
                 {
-                    var pt = dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
-                    ToolTip tip = new ToolTip();
-                    tip.IsBalloon = true;
-                    tip.Show("Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19", this, pt.Left + ((pt.Right - pt.Left) / 2), pt.Bottom, 2000);
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19";
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
                     return;
                 }
             }
-            float textInt = -1;
-            if (!float.TryParse(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out textInt) && e.ColumnIndex == 4)
+            float textFloat = -1;
+            if (!float.TryParse(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out textFloat) && e.ColumnIndex == 4)
             {
-                if (textInt <= 0)
+                if (textFloat <= 0)
                 {
-                    var pt = dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
-                    ToolTip tip = new ToolTip();
-                    tip.IsBalloon = true;
-                    tip.Show("Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19", this, pt.Left+((pt.Right-pt.Left)/2), pt.Bottom, 2000);
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19";
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
                     return;
@@ -200,7 +206,7 @@ namespace AlDar_1._0.Window.AdditionalForm
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (sender as DataGridView);
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0 && !dataGridView1.Rows[e.RowIndex].IsNewRow)
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0 && !dataGridView1.Rows[e.RowIndex].IsNewRow && dataGridView1.ReadOnly==false)
             {
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
             }
@@ -216,38 +222,59 @@ namespace AlDar_1._0.Window.AdditionalForm
         }
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            using (DatabaseContext context = new DatabaseContext())
-            {
-                Valuations newValuation = new Valuations();
-                newValuation = CreateNewValuation();
-                context.Valuations.Add(newValuation);
-                if (context.SaveChanges() > 0)
-                {
-                    MessBox.MessBox.Show("Wycena zapisana", "Udało się zapisać wycene", MessBox.TypeOfBox.Ok, MessBox.Icons.Ok);
-                }
-                this.Close();
-            }
+            CreateNewValuation();
+            this.Close();
         }
         private void SavePDFBtn_Click(object sender, EventArgs e)
         {
-            using (Models.DatabaseContext context = new Models.DatabaseContext())
-            {
-                Models.Valuations newValuation = new Models.Valuations();
-                newValuation = CreateNewValuation();
+            using (DatabaseContext context = new Models.DatabaseContext())
+            {              
+                CreateNewValuation();
+                var editVal = context.Valuations.FirstOrDefault(v => v.IdVal == _Val.IdVal);
                 var item = new FolderBrowserDialog();
                 item.ShowDialog();
-                Common_Class.PDFCreator.CreatePDF(newValuation.NameVal, item.SelectedPath, newValuation);
-                
-                context.Valuations.Add(newValuation);
-                if (context.SaveChanges() > 0)
-                {
-                    MessBox.MessBox.Show("Wycena zapisana", "Udało się zapisać wycene", MessBox.TypeOfBox.Ok, MessBox.Icons.Ok);
-                }
+                Common_Class.PDFCreator.CreatePDF(editVal.NameVal, item.SelectedPath, editVal);
                 this.Close();
+            }
+        }
+        private void EditBtn_Click(object sender, EventArgs e)
+        {
+            if (EditBtn.Text == "Edytuj")
+            {
+                ClickEdit(true);
+                EditBtn.Text = "Anuluj edytcję";
+            }
+            else
+            {
+                using (var context = new DatabaseContext())
+                {
+                    var prod = context.Valuations.FirstOrDefault(val => val.IdVal == _Val.IdVal);
+                    DataSync();
+                    PriceLbl.Text = "Cena brutto: " + _Val.ValTotalAmount.ToString() + " zł";
+                    NameValBox.Text = _Val.NameVal;
+                    dataGridView1.Rows.Clear();
+                    foreach (var item in prod.Productes)
+                    {
+                        dataGridView1.Rows.Add(item.IdProduct, dataGridView1.Rows.Count + 1, item.Name, item.DefaultPrice, item.DefaultQuantity, item.Measure, item.DefaultPrice * item.DefaultQuantity);
+                    }
+                }
+                    ClickEdit(false);
+                EditBtn.Text = "Edytuj";
             }
         }
         #endregion
         #region Methods
+        private void ClickEdit(bool yesOrNo)
+        {
+            AddProdBtn.Enabled = yesOrNo;
+            AddProdBtn.Visible = yesOrNo;
+            SaveBtn.Enabled = yesOrNo;
+            SaveBtn.Visible = yesOrNo;
+            SavePDFBtn.Enabled = yesOrNo;
+            SavePDFBtn.Visible = yesOrNo;
+            NameValBox.Enabled = yesOrNo;
+            dataGridView1.ReadOnly = !yesOrNo;
+        }
         private void DataSync()
         {
             using (DatabaseContext context = new DatabaseContext())
@@ -255,39 +282,42 @@ namespace AlDar_1._0.Window.AdditionalForm
                 prodlist = context.Products.ToList();
             }
         }
-        private Valuations CreateNewValuation()
+        private void CreateNewValuation()
         {
-            using (DatabaseContext context = new Models.DatabaseContext())
+            Valuations editval;
+            using (var context = new DatabaseContext())
             {
-                Models.Valuations newValuation = new Models.Valuations();
-                newValuation.Status = Common_Class.ValStatus.Nowy;
-                newValuation.AddDate = DateTime.Now;
+                editval = context.Valuations.FirstOrDefault(v => v.IdVal == _Val.IdVal);
+
                 if (string.IsNullOrEmpty(NameValBox.Text))
-                {
                     MessBox.MessBox.Show("Błąd", "Trzeba wpisać nazwę wyceny", MessBox.TypeOfBox.Ok, MessBox.Icons.Warning);
-                    return null;
-                }
-                newValuation.NameVal = NameValBox.Text;
+                editval.NameVal = NameValBox.Text;
                 double totalPrice = 0;
-                var listProducts = new List<BaseProducts>();
+                var listProducts = new List<EditProducts>();
+                editval.Productes.Clear();
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Cells[0].Value == null)
                         continue;
-                    var id = int.Parse(row.Cells[0].Value.ToString());
-                    EditProducts prod = new EditProducts();
-                    BaseProducts baseProd = context.Products.FirstOrDefault(p => p.IdProduct == id);
-                    prod.IdProduct = newValuation.Productes.Count()+1;
+
+                    var prod = new EditProducts();
+                    int id = int.Parse(row.Cells[0].Value.ToString());
+                    var baseProd = context.EditProducts.FirstOrDefault(p => p.IdProduct == id);
+                    prod.IdProduct = listProducts.Count() + 1;
                     prod.Name = baseProd.Name;
                     prod.Measure = baseProd.Measure;
                     prod.Status = baseProd.Status;
-                    prod.DefaultPrice = (float)Math.Round(double.Parse(row.Cells[3].Value.ToString()),2);
-                    prod.DefaultQuantity = (float)Math.Round(double.Parse(row.Cells[4].Value.ToString()),2);
+                    prod.DefaultPrice = (float)Math.Round(double.Parse(row.Cells[3].Value.ToString()), 2);
+                    prod.DefaultQuantity = (float)Math.Round(double.Parse(row.Cells[4].Value.ToString()), 2);
                     totalPrice += (prod.DefaultPrice * prod.DefaultQuantity);
-                    newValuation.Productes.Add(prod);
+                    listProducts.Add(prod);
                 }
-                newValuation.ValTotalAmount = (float)Math.Round(totalPrice, 2);
-                return newValuation;
+                editval.Productes = listProducts;
+                editval.ValTotalAmount = (float)Math.Round(totalPrice, 2);
+                if (context.SaveChanges() > 0)
+                {
+                    MessBox.MessBox.Show("Zapis udany","Zmiany zostały zapisane",TypeOfBox.Ok,Icons.Ok);
+                }
             }
         }
         private void addData()
@@ -298,7 +328,7 @@ namespace AlDar_1._0.Window.AdditionalForm
             if (temp.Count() == 0)
                 return;
             dataGridView1.Rows[rowIndex].Cells[0].Value = prod.IdProduct;
-            dataGridView1.Rows[rowIndex].Cells[1].Value = rowIndex + 1;
+            dataGridView1.Rows[rowIndex].Cells[1].Value = rowIndex+1;
             dataGridView1.Rows[rowIndex].Cells[2].Value = prod.Name;
             dataGridView1.Rows[rowIndex].Cells[3].Value = prod.DefaultPrice;
             dataGridView1.Rows[rowIndex].Cells[4].Value = prod.DefaultQuantity;

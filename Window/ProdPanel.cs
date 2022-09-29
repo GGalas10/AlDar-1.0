@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Products = AlDar_1._0.Models.Products;
 using Status = AlDar_1._0.Common_Class.Status;
 using Excel = AlDar_1._0.Common_Class.Excel;
+using System.Windows;
+using AlDar_1._0.Models;
+using AlDar_1._0.Window.AdditionalForm;
 
 namespace AlDar_1._0.Window
 {
@@ -19,7 +21,7 @@ namespace AlDar_1._0.Window
         public void DataSync()
         {
             dataGridView1.Rows.Clear();
-            using(var context = new Models.DatabaseContext())
+            using(var context = new DatabaseContext())
             {
                 var products = context.Products.Where(p => p.Status == Status.Aktywny).ToList();
                 foreach(var prod in products)
@@ -33,13 +35,13 @@ namespace AlDar_1._0.Window
         }
         public void Export()
         {
-            using (var context = new Models.DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var result = FolderForExport.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     var path = FolderForExport.SelectedPath;
-                    var fileName = "Export z dnia: " + DateTime.Now.ToString("Y") + ".xlsx";
+                    var fileName = "Export z dnia " + DateTime.Now.ToString("Y") + ".xlsx";
                     var fullPath = path + @"\" + fileName;
                     Excel excel = new Excel();
                     if (File.Exists(fullPath))
@@ -56,28 +58,23 @@ namespace AlDar_1._0.Window
         {
             Export();
         }
-
         private void NewProdBtn_Click(object sender, EventArgs e)
         {
             AdditionalForm.ProduktAdd Add = new AdditionalForm.ProduktAdd();
             Add.ShowDialog();
             DataSync();
         }
-
         private void DelBtn_Click(object sender, EventArgs e)
         {
-            var allId = new List<int>();
-            foreach(DataGridViewRow item in dataGridView1.Rows)
+            using (var context = new DatabaseContext())
             {
-                if ((bool)item.Cells["CheckCol"].Value){
-                    allId.Add(int.Parse(item.Cells[0].Value.ToString()));
-                }
-            }
-            foreach(var Id in allId)
-            {
-                using(var context = new Models.DatabaseContext())
+                if (dataGridView1.SelectedRows.Count > 0)
                 {
-                    context.Products.FirstOrDefault(p => p.IdProduct == Id).Status = Status.Nieaktywny;
+                    var id = int.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                    var prod = context.Products.FirstOrDefault(p => p.IdProduct == id);
+                    prod.Status = Status.Nieaktywny;
+                    if (context.SaveChanges() > 0)
+                        return;
                 }
             }
             DataSync();
@@ -90,23 +87,35 @@ namespace AlDar_1._0.Window
         }
         private void ExcelChangeBtn_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Czy wyeksportowałeś już excela do zmiany?", "Export", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if(result == DialogResult.Yes)
+            var result = MessBox.MessBox.Show("Czy wyeksportowałeś już excela do zmiany?", "Export", MessBox.TypeOfBox.YesCancelNo, MessBox.Icons.Info);
+            if(result == MessageBoxResult.Yes)
             {
                 var ChangeForm = new AdditionalForm.ChangeFromExcel();
                 ChangeForm.ShowDialog();
                 DataSync();
             }
-            if (result == DialogResult.Cancel)
+            if (result == MessageBoxResult.Cancel)
                 return;
-            if(result == DialogResult.No)
+            if(result == MessageBoxResult.No)
             {
-                result = MessageBox.Show("Chcesz to zrobić teraz?", "Export", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.No)
+                result = MessBox.MessBox.Show("Chcesz to zrobić teraz?", "Export", MessBox.TypeOfBox.YesCancelNo, MessBox.Icons.Info);
+                if (result == MessageBoxResult.No)
                     return;
                 Export();
             }
         }
+        private void ProdPanel_Load(object sender, EventArgs e)
+        {
+            DataSync();
+        }
+
         #endregion
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var view = new ProdView(int.Parse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString()));
+            view.ShowDialog();
+            DataSync();
+        }
     }
 }

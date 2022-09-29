@@ -1,22 +1,23 @@
-﻿using System;
+﻿using AlDar_1._0.Common_Class;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Status = AlDar_1._0.Common_Class.Status;
 
 namespace AlDar_1._0.Models
 {
-    internal class Valuations
+    public class Valuations
     {
+        public Valuations()
+        {
+            this.Productes = new HashSet<EditProducts>();
+        }
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdVal { get; set; }
         public string NameVal { get; set; }
         public float ValTotalAmount { get; set; }
-        public DateTime AddDate { get; set; }
-        public virtual List<Products> Products { get; set; }
-        public Status Status { get; set; }
+        public DateTime AddDate { get; set; }       
+        public ValStatus Status { get; set; }
+        public virtual ICollection<EditProducts> Productes { get; set; }
     }
 }

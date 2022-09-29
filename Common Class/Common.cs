@@ -1,14 +1,18 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using _Excel = Microsoft.Office.Interop.Excel;
+using Font = System.Drawing.Font;
 
 namespace AlDar_1._0.Common_Class
 {
     internal static class Common
     {
-
+        public static void SetSettings()
+        {
+        }
     }
     public enum Status
     {
@@ -39,7 +43,7 @@ namespace AlDar_1._0.Common_Class
             wb = excel.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
             ws = wb.Worksheets[1];
         }
-        public void SaveAs(List<Models.Products> list,string path)
+        public void SaveAs(List<Models.BaseProducts> list,string path)
         {
             WriteToCell(1, 1, "Nazwa");
             WriteToCell(1, 2, "Cena");
@@ -66,9 +70,9 @@ namespace AlDar_1._0.Common_Class
 
             ws.Cells[i, j].Value = value;
         }
-        public List<Models.Products> ReadCells(string path)
+        public List<Models.BaseProducts> ReadCells(string path)
         {
-            List<Models.Products> ProductList = new List<Models.Products>();
+            List<Models.BaseProducts> ProductList = new List<Models.BaseProducts>();
             wb = excel.Workbooks.Open(path);
             ws = wb.Worksheets[1];
             try
@@ -77,7 +81,7 @@ namespace AlDar_1._0.Common_Class
                 {
                     if (ws.Rows.Cells[i, 1].Value2 != null)
                     {
-                        Models.Products temp = new Models.Products();
+                        Models.BaseProducts temp = new Models.BaseProducts();
                         temp.Name = ws.Cells[i, 1].Value2;                        
                         var floatTemp = ws.Cells[i, 2].Value2;
                         temp.DefaultPrice = float.Parse(floatTemp.ToString());
