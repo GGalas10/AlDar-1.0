@@ -18,7 +18,7 @@ namespace AlDar_1._0.Window.AdditionalForm
         int rowIndex,colindex;
         List<BaseProducts> prodlist = new List<BaseProducts>();
         List<BaseProducts> temp = new List<BaseProducts>();
-        List<BaseProducts> checkList = new List<BaseProducts>();
+        DataGridViewRow _RowBeforeChange = new DataGridViewRow();
         #endregion
         public AddVal()
         {
@@ -193,7 +193,11 @@ namespace AlDar_1._0.Window.AdditionalForm
                     dataGridView1.Rows[e.RowIndex].Cells[1].Value = null;
                     dataGridView1.Rows[e.RowIndex].Cells[3].Value = null;
                     dataGridView1.Rows[e.RowIndex].Cells[4].Value = null;
-                    dataGridView1.Rows[e.RowIndex].Cells[2].ErrorText = "Nie ma takiego przedmiotu w bazie danych";
+                    dataGridView1.Rows[e.RowIndex].Cells[2].ErrorText = "";
+                    var pt = dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+                    ToolTip tip = new ToolTip();
+                    tip.IsBalloon = true;
+                    tip.Show("Nie wybrano produktu z bazy", this, pt.Left + ((pt.Right - pt.Left) / 2), pt.Bottom, 2000);
                 }
             }
         }
@@ -292,9 +296,37 @@ namespace AlDar_1._0.Window.AdditionalForm
         }
         private void addData()
         {
-            
+            bool check = false;
+            int tempId=0;
             int id = int.Parse(dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[0].Value.ToString());
             BaseProducts prod = temp.FirstOrDefault(p => p.IdProduct == id);
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    if (prod.Name == row.Cells[2].Value.ToString())
+                    {
+                        tempId = row.Index + 1;
+                        check = true;
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            if (check)
+            {
+                ToolTip tip = new ToolTip();
+                tip.IsBalloon = true;
+                var rectangle = dataGridView1.GetCellDisplayRectangle(2, dataGridView1.CurrentRow.Index, false);
+                tip.Show("Taki towar już istnieje na wycenie.\n" +
+                    "Id: " + tempId +
+                    "\nNazwa: " + dataGridView1.Rows[tempId - 1].Cells[2].Value.ToString(),
+                    this,
+                    rectangle.Left+((rectangle.Right-rectangle.Left)/2),rectangle.Y,3000);
+                return;
+            }
             if (temp.Count() == 0)
                 return;
             dataGridView1.Rows[rowIndex].Cells[0].Value = prod.IdProduct;

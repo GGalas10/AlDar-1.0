@@ -158,7 +158,7 @@ namespace AlDar_1._0.Window.AdditionalForm
         private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Rows[e.RowIndex].IsNewRow || dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null)
-                return;           
+                return;
             double textDouble = -1;
             if (!double.TryParse(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out textDouble) && e.ColumnIndex == 3)
             {
@@ -168,7 +168,7 @@ namespace AlDar_1._0.Window.AdditionalForm
                     ToolTip tip = new ToolTip();
                     tip.IsBalloon = true;
                     tip.Show("Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19", this, pt.Left + ((pt.Right - pt.Left) / 2), pt.Bottom, 2000);
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19";
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "";
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
                     return;
                 }
@@ -182,9 +182,8 @@ namespace AlDar_1._0.Window.AdditionalForm
                     ToolTip tip = new ToolTip();
                     tip.IsBalloon = true;
                     tip.Show("Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19", this, pt.Left + ((pt.Right - pt.Left) / 2), pt.Bottom, 2000);
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "Musi być liczba z maks 2 liczbami po przecinku większą od 0 np 19.19";
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "";
                     dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
-                    return;
                 }
             }
             dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "";
@@ -196,18 +195,24 @@ namespace AlDar_1._0.Window.AdditionalForm
                 if (checkedProd != null)
                 {
                     dataGridView1.Rows[e.RowIndex].Cells[0].Value = checkedProd.IdProduct;
-                    dataGridView1.Rows[e.RowIndex].Cells[1].Value = e.RowIndex+1;
+                    dataGridView1.Rows[e.RowIndex].Cells[1].Value = e.RowIndex + 1;
                     dataGridView1.Rows[e.RowIndex].Cells[2].Value = checkedProd.Name;
                     dataGridView1.Rows[e.RowIndex].Cells[3].Value = checkedProd.DefaultPrice;
                     dataGridView1.Rows[e.RowIndex].Cells[4].Value = checkedProd.DefaultQuantity;
                 }
                 else
                 {
+                    var pt = dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+                    ToolTip tip = new ToolTip();
+                    tip.IsBalloon = true;
+                    tip.Show("Nie wybrano produktu z bazy", this, pt.Left + ((pt.Right - pt.Left) / 2), pt.Bottom, 2000);
+                    dataGridView1.Rows[e.RowIndex].Cells[2].ErrorText = "";
+                    dataGridView1.Rows[e.RowIndex].Cells[2].Value = "";
                     dataGridView1.Rows[e.RowIndex].Cells[0].Value = null;
                     dataGridView1.Rows[e.RowIndex].Cells[1].Value = null;
+                    dataGridView1.Rows[e.RowIndex].Cells[2].Value = null;
                     dataGridView1.Rows[e.RowIndex].Cells[3].Value = null;
                     dataGridView1.Rows[e.RowIndex].Cells[4].Value = null;
-                    dataGridView1.Rows[e.RowIndex].Cells[2].ErrorText = "Nie ma takiego przedmiotu w bazie danych";
                 }
             }
         }
@@ -330,9 +335,30 @@ namespace AlDar_1._0.Window.AdditionalForm
         }
         private void addData()
         {
-            
+            bool check = false;
+            int tempId = 0;
             int id = int.Parse(dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex].Cells[0].Value.ToString());
             BaseProducts prod = temp.FirstOrDefault(p => p.IdProduct == id);
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells[0].Value == null)
+                    continue;
+                if (prod.Name == row.Cells[2].Value.ToString())
+                {
+                    tempId = row.Index + 1;
+                    check = true;
+                }
+            }
+            if (check)
+            {
+                ToolTip tip = new ToolTip();
+                tip.IsBalloon = true;
+                var rectangle = dataGridView1.GetCellDisplayRectangle(2, dataGridView1.CurrentRow.Index, false);
+                tip.Show("Taki towar już istnieje na wycenie.\n" +
+                    "Id: " + tempId +
+                    "\nNazwa: " + dataGridView1.Rows[tempId - 1].Cells[2].Value.ToString(), this, rectangle.Left + ((rectangle.Right - rectangle.Left) / 2), rectangle.Y, 2000);
+                return;
+            }
             if (temp.Count() == 0)
                 return;
             dataGridView1.Rows[rowIndex].Cells[0].Value = prod.IdProduct;
@@ -351,7 +377,8 @@ namespace AlDar_1._0.Window.AdditionalForm
             dataGridView1.Focus();
             dataGridView2.Visible = false;
             dataGridView2.Enabled = false;
-        }      
+        }
+
         private void SetPrice()
         {
             var dataRows = new List<DataGridViewRow>();

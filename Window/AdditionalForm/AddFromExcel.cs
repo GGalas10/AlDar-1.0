@@ -60,6 +60,7 @@ namespace AlDar_1._0.Window.AdditionalForm
                     if (context.SaveChanges() > 0)
                     {
                         MessBox.MessBox.Show("Udało się", "Produkty zostały dodane\n", MessBox.TypeOfBox.Ok, MessBox.Icons.Ok);
+                        this.Close();
                     }
                     if (ContainProduct.Count > 0)
                     {
@@ -71,7 +72,7 @@ namespace AlDar_1._0.Window.AdditionalForm
                         MessBox.MessBox.Show("Błąd zapisu", "Produkty, które nie zostały dodane\n" + temp, MessBox.TypeOfBox.Ok, MessBox.Icons.Error);
                     }
                 }
-            }
+            }           
         }
         private void button1_Click(object sender, EventArgs e)
         {
