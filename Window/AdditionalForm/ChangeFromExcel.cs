@@ -10,6 +10,7 @@ namespace AlDar_1._0.Window.AdditionalForm
     {
         List<Models.Products> productList = new List<Models.Products>();
         List<Models.Products> productListToChange = new List<Models.Products>();
+        bool anyChange = false;
         public ChangeFromExcel()
         {
             InitializeComponent();
@@ -17,6 +18,8 @@ namespace AlDar_1._0.Window.AdditionalForm
 
         private void FodlerBtn_Click(object sender, EventArgs e)
         {
+            DbGridView.Rows.Clear();
+            ExportGridView.Rows.Clear();
             var result = FileDial.ShowDialog();
             if(result == DialogResult.OK)
             {
@@ -26,13 +29,14 @@ namespace AlDar_1._0.Window.AdditionalForm
                 {
                     foreach(var item in productList)
                     {
+                        item.IdProduct = productList.IndexOf(item) + 1;
                         DataGridViewRow row = new DataGridViewRow();
                         DataGridViewCellStyle cell = new DataGridViewCellStyle();
-                        if(item.IdProduct == context.Products.FirstOrDefault(p => p.IdProduct == item.IdProduct).IdProduct)
+                        if(item.Name == context.Products.FirstOrDefault(p => p.Name == item.Name).Name)
                         {
                             productListToChange.Add(item);
-                            AddRows(DbGridView, context.Products.FirstOrDefault(p => p.IdProduct == item.IdProduct));
-                            AddRowsChange(ExportGridView, item, context.Products.FirstOrDefault(p => p.IdProduct == item.IdProduct));
+                            AddRows(DbGridView, context.Products.FirstOrDefault(p => p.Name == item.Name));
+                            AddRowsChange(ExportGridView, item, context.Products.FirstOrDefault(p => p.Name == item.Name));
                         }
                     }
                 }
@@ -58,6 +62,7 @@ namespace AlDar_1._0.Window.AdditionalForm
             {
                 dataview.Rows[dataview.Rows.Count - 1].Cells[1].Style = cell;
                 dataview.Rows[dataview.Rows.Count - 1].Cells[1].Value = one.Name;
+                anyChange = true;
             }
             else
             {
@@ -65,21 +70,23 @@ namespace AlDar_1._0.Window.AdditionalForm
             }
             if (one.DefaultPrice != two.DefaultPrice)
             {
-                dataview.Rows[dataview.Rows.Count - 1].Cells[1].Style = cell;
-                dataview.Rows[dataview.Rows.Count - 1].Cells[1].Value = one.DefaultPrice;
+                dataview.Rows[dataview.Rows.Count - 1].Cells[2].Style = cell;
+                dataview.Rows[dataview.Rows.Count - 1].Cells[2].Value = one.DefaultPrice;
+                anyChange = true;
             }
             else
             {
-                dataview.Rows[dataview.Rows.Count - 1].Cells[1].Value = one.DefaultPrice;
+                dataview.Rows[dataview.Rows.Count - 1].Cells[2].Value = one.DefaultPrice;
             }
             if (one.Measure != two.Measure)
             {
-                dataview.Rows[dataview.Rows.Count - 1].Cells[1].Style = cell;
-                dataview.Rows[dataview.Rows.Count - 1].Cells[1].Value = one.Measure;
+                dataview.Rows[dataview.Rows.Count - 1].Cells[3].Style = cell;
+                dataview.Rows[dataview.Rows.Count - 1].Cells[3].Value = one.Measure;
+                anyChange = true;
             }
             else
             {
-                dataview.Rows[dataview.Rows.Count - 1].Cells[1].Value = one.Measure;
+                dataview.Rows[dataview.Rows.Count - 1].Cells[3].Value = one.Measure;
             }
 
 
@@ -89,16 +96,32 @@ namespace AlDar_1._0.Window.AdditionalForm
             using (var context = new Models.DatabaseContext()) {
                 foreach (var prod in productListToChange)
                 {
-                    var ProductToChange = context.Products.FirstOrDefault(p => p.IdProduct == prod.IdProduct);
+                    var ProductToChange = context.Products.FirstOrDefault(p => p.Name == prod.Name);
                     ProductToChange.Name = prod.Name;
                     ProductToChange.DefaultPrice = prod.DefaultPrice;
                     ProductToChange.Measure = prod.Measure;
                 }
-                if (context.SaveChanges() > 0)
+                if (anyChange)
                 {
-
+                    if (context.SaveChanges() > 0)
+                    {
+                        MessBox.MessBox.Show("Udało się", "Udało się zapisać produkty", MessBox.TypeOfBox.Ok, MessBox.Icons.Ok);
+                        DbGridView.Rows.Clear();
+                        ExportGridView.Rows.Clear();
+                    }
+                }
+                else
+                {
+                    MessBox.MessBox.Show("Brak zmian", "Brak produktów do zmian", MessBox.TypeOfBox.Ok, MessBox.Icons.Info);
+                    DbGridView.Rows.Clear();
+                    ExportGridView.Rows.Clear();
                 }
             }
+        }
+
+        private void ExportGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            ExportGridView.ClearSelection();
         }
     }
 }

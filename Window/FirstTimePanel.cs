@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AlDar_1._0.Models;
+using System;
+using System.IO;
 using System.Windows.Forms;
 using Settings = AlDar_1._0.Properties.Settings;
 
@@ -10,31 +12,16 @@ namespace AlDar_1._0.Window
         {
             InitializeComponent();
         }
-
-        private void SelfBtn_Click(object sender, EventArgs e)
-        {
-            
-            var result = FolderBrow.ShowDialog();
-            if(result == DialogResult.OK)
-            {
-                PathBox.Text = FolderBrow.SelectedPath+@"\";
-            }
-        }
-
-        private void DefBtn_Click(object sender, EventArgs e)
-        {
-            PathBox.Text = Settings.Default.DbPath + Settings.Default.DbName;
-        }
-
         private void DoneBtn_Click(object sender, EventArgs e)
         {
-            Settings.Default.DbPath = FolderBrow.SelectedPath + @"\";
+            Settings.Default.DbPath = Directory.GetCurrentDirectory() + Settings.Default.DbPath;
+            Directory.CreateDirectory(Settings.Default.DbPath);
             Settings.Default.UserName = NameBox.Text.Trim();
             Settings.Default.FirstTime = false;
             Settings.Default.Save();
-            using(var context = new Models.DatabaseContext())
+            using(var context = new DatabaseContext())
             {
-                context.Database.Create();
+                context.Database.CreateIfNotExists();
             }
             Application.Restart();
         }

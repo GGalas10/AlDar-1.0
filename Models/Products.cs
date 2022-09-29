@@ -11,6 +11,10 @@ namespace AlDar_1._0.Models
 {
     public class Products
     {
+        public Products()
+        {
+            this.Valuationes = new HashSet<Valuations>();
+        }
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdProduct { get; set; }
         public string Name { get; set; }
@@ -18,6 +22,8 @@ namespace AlDar_1._0.Models
         public int DefaultQuantity { get; set; }
         public Common.Status Status { get; set; }
         public Common.UMeasure Measure { get; set; }
+
+        public virtual ICollection<Valuations> Valuationes { get; set; }
         public static bool Equals(Products first,Products second)
         {
             if (first.Name == second.Name && first.Measure == second.Measure && first.Status == second.Status)

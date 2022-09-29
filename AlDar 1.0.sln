@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlDar 1.0", "AlDar 1.0.csproj", "{0AD4074A-3088-45EA-BF0F-2FEBD28F504C}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AlDar Setup", "..\AlDar Setup\AlDar Setup.vdproj", "{BC753D20-8EE2-4ED7-9A8E-1A08007B5AE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{0AD4074A-3088-45EA-BF0F-2FEBD28F504C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AD4074A-3088-45EA-BF0F-2FEBD28F504C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AD4074A-3088-45EA-BF0F-2FEBD28F504C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC753D20-8EE2-4ED7-9A8E-1A08007B5AE7}.Debug|Any CPU.ActiveCfg = Debug
+		{BC753D20-8EE2-4ED7-9A8E-1A08007B5AE7}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

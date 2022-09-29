@@ -45,11 +45,11 @@
             this.FodlerBtn = new System.Windows.Forms.Button();
             this.FileDial = new System.Windows.Forms.OpenFileDialog();
             this.ExportGridView = new System.Windows.Forms.DataGridView();
+            this.DoneBtn = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoneBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DbGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ExportGridView)).BeginInit();
             this.SuspendLayout();
@@ -75,6 +75,7 @@
             this.DbGridView.Name = "DbGridView";
             this.DbGridView.ReadOnly = true;
             this.DbGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.DbGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DbGridView.Size = new System.Drawing.Size(455, 599);
             this.DbGridView.TabIndex = 6;
             // 
@@ -190,8 +191,24 @@
             this.ExportGridView.Name = "ExportGridView";
             this.ExportGridView.ReadOnly = true;
             this.ExportGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.ExportGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ExportGridView.Size = new System.Drawing.Size(492, 599);
             this.ExportGridView.TabIndex = 8;
+            this.ExportGridView.SelectionChanged += new System.EventHandler(this.ExportGridView_SelectionChanged);
+            // 
+            // DoneBtn
+            // 
+            this.DoneBtn.BackColor = System.Drawing.Color.Black;
+            this.DoneBtn.FlatAppearance.BorderSize = 0;
+            this.DoneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DoneBtn.ForeColor = System.Drawing.Color.White;
+            this.DoneBtn.Location = new System.Drawing.Point(915, 12);
+            this.DoneBtn.Name = "DoneBtn";
+            this.DoneBtn.Size = new System.Drawing.Size(120, 29);
+            this.DoneBtn.TabIndex = 9;
+            this.DoneBtn.Text = "Akceptuje";
+            this.DoneBtn.UseVisualStyleBackColor = false;
+            this.DoneBtn.Click += new System.EventHandler(this.DoneBtn_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -200,7 +217,7 @@
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
@@ -217,7 +234,7 @@
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
@@ -237,7 +254,7 @@
             dataGridViewCellStyle7.Format = "C2";
             dataGridViewCellStyle7.NullValue = null;
             dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle7;
@@ -255,7 +272,7 @@
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(5);
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle8;
@@ -264,20 +281,6 @@
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // DoneBtn
-            // 
-            this.DoneBtn.BackColor = System.Drawing.Color.Black;
-            this.DoneBtn.FlatAppearance.BorderSize = 0;
-            this.DoneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DoneBtn.ForeColor = System.Drawing.Color.White;
-            this.DoneBtn.Location = new System.Drawing.Point(915, 12);
-            this.DoneBtn.Name = "DoneBtn";
-            this.DoneBtn.Size = new System.Drawing.Size(120, 29);
-            this.DoneBtn.TabIndex = 9;
-            this.DoneBtn.Text = "Akceptuje";
-            this.DoneBtn.UseVisualStyleBackColor = false;
-            this.DoneBtn.Click += new System.EventHandler(this.DoneBtn_Click);
             // 
             // ChangeFromExcel
             // 
@@ -311,10 +314,10 @@
         private System.Windows.Forms.Button FodlerBtn;
         private System.Windows.Forms.OpenFileDialog FileDial;
         private System.Windows.Forms.DataGridView ExportGridView;
+        private System.Windows.Forms.Button DoneBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.Button DoneBtn;
     }
 }

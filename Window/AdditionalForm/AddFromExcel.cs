@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Linq;
 using Excel = AlDar_1._0.Common_Class.Excel;
+using AlDar_1._0.Models;
 
 namespace AlDar_1._0.Window.AdditionalForm
 {
@@ -14,14 +15,9 @@ namespace AlDar_1._0.Window.AdditionalForm
         {
             InitializeComponent();
         }
-
-        private void AddFromExcel_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void FodlerBtn_Click(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
             var result = FileDial.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -34,40 +30,49 @@ namespace AlDar_1._0.Window.AdditionalForm
                     dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1].Value = product.Name;
                     dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[2].Value = product.DefaultPrice;
                     dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[3].Value = product.Measure;
+                    product.Status = Common_Class.Status.Aktywny;
+                    product.DefaultQuantity = 1;
                 }
             }
         }
-
         private void ReadyBtn_Click(object sender, EventArgs e)
         {
-            List<Models.Products> ContainProduct = new List<Models.Products>();
-            using(var context = new Models.DatabaseContext())
+            if (dataGridView1.Rows.Count > 0)
             {
-                foreach(var product in ProductList)
+                List<Models.Products> ContainProduct = new List<Models.Products>();
+                using (var context = new Models.DatabaseContext())
                 {
-                    if (!Models.Products.Equals(product, context.Products.FirstOrDefault(p => p.Name == product.Name)))
-                        context.Products.Add(product);
-                    else
-                        ContainProduct.Add(context.Products.FirstOrDefault(p => p.Name == product.Name));
-                }
-                
-                if (context.SaveChanges() > 0)
-                {
-                    MessageBox.Show("Zapis produktów udany");
-                }
-                if(ContainProduct.Count > 0)
-                {
-                    string temp="";
-                    foreach(var product in ContainProduct)
+                    foreach (var product in ProductList)
                     {
-                        temp += "ID: " + product.IdProduct + ". Nazwa: " + product.Name + "\n";
+                        if (context.Products.FirstOrDefault(p => p.Name == product.Name) != null)
+                        {
+                            if (!Products.Equals(product, context.Products.FirstOrDefault(p => p.Name == product.Name)))
+                                context.Products.Add(product);
+                            else
+                            {
+                                ContainProduct.Add(context.Products.FirstOrDefault(p => p.Name == product.Name));
+                            }
+                        }
+                        else
+                            context.Products.Add(product);
                     }
-                    MessageBox.Show("Produkty, które nie zostały dodane\n"+temp);
+
+                    if (context.SaveChanges() > 0)
+                    {
+                        MessBox.MessBox.Show("Udało się", "Produkty zostały dodane\n", MessBox.TypeOfBox.Ok, MessBox.Icons.Ok);
+                    }
+                    if (ContainProduct.Count > 0)
+                    {
+                        string temp = "";
+                        foreach (var product in ContainProduct)
+                        {
+                            temp += "ID: " + product.IdProduct + ". Nazwa: " + product.Name + "\n";
+                        }
+                        MessBox.MessBox.Show("Błąd zapisu", "Produkty, które nie zostały dodane\n" + temp, MessBox.TypeOfBox.Ok, MessBox.Icons.Error);
+                    }
                 }
-                
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             var result = folderBrow.ShowDialog();

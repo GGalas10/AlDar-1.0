@@ -1,14 +1,18 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using _Excel = Microsoft.Office.Interop.Excel;
+using Font = System.Drawing.Font;
 
 namespace AlDar_1._0.Common_Class
 {
     internal static class Common
     {
-
+        public static void SetSettings()
+        {
+        }
     }
     public enum Status
     {
