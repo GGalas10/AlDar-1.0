@@ -3,8 +3,15 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using System.Security.Principal;
+using System.Threading;
+using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace AlDar_1._0.Common_Class
 {
@@ -14,9 +21,36 @@ namespace AlDar_1._0.Common_Class
         static string _ValPath;
         static Document pdfDoc;
         static Valuations _Valuation;
+        private static void openPdfFile()
+        {
+            string path = Directory.GetCurrentDirectory() + "\\Temp";
+            if (Directory.Exists(path))
+            {
+                return;
+            }
+            PdfDocumentRenderer renderPDF = new PdfDocumentRenderer();
+            renderPDF.Document = pdfDoc;
+            renderPDF.RenderDocument();
+            DirectorySecurity security = new DirectorySecurity();
+            security.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, AccessControlType.Allow));
+            Directory.CreateDirectory(path,security);
+            renderPDF.Save(path+"\\Temp.pdf");
+            using (var proc = new Process())
+            {
+                proc.StartInfo.FileName = (path +"\\Temp.pdf");
+                proc.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                proc.StartInfo.UseShellExecute = true;
+                proc.StartInfo.CreateNoWindow = false;
+                proc.StartInfo.WorkingDirectory = path;
+                proc.StartInfo.Domain = "AcroRd32.exe";
+                proc.Start();
+                proc.WaitForExit();
+                File.Delete(path+"\\Temp.pdf");
+                Directory.Delete(path);
+            }
+        }
 
-
-        public static void PreviewPDF(string name, Models.Valuations val)
+        public static void PreviewPDF(string name, Valuations val)
         {
             _Valuation = val;
             _ValName = name + ".pdf";
@@ -31,29 +65,26 @@ namespace AlDar_1._0.Common_Class
             pdfDoc.DefaultPageSetup.TopMargin = 30;
             pdfDoc.DefaultPageSetup.BottomMargin = 30;
             SetStyles();
-            CreatePage();
-            PdfDocumentRenderer renderPDF = new PdfDocumentRenderer();
-            renderPDF.Document = pdfDoc;
-            renderPDF.RenderDocument();
-            Directory.CreateDirectory("C:\\Temp");
-            renderPDF.Save("C:\\Temp\\Temp.pdf");
-            var Viewer = new PDFViewer("C:\\Temp\\Temp.pdf");
-            Viewer.ShowDialog();
-            File.Delete("C:\\Temp\\Temp.pdf");
-            Directory.Delete("C:\\Temp");
+            CreatePage();            
+            var th1 = new Thread(openPdfFile);
+            th1.Start();
         }
-        public static void CreatePDF(string name,string path,Models.Valuations val)
+        public static void CreatePDF(string name,string path,Valuations val)
         {
             _Valuation = val;
             _ValName = name+".pdf";
             _ValPath = path+"\\";
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            
-            //Create documents with settings
+
+            //Create documents with settings            
             pdfDoc = new Document();
+            pdfDoc.DefaultPageSetup.LeftMargin = 30;
+            pdfDoc.DefaultPageSetup.RightMargin = 30;
+            pdfDoc.DefaultPageSetup.TopMargin = 30;
+            pdfDoc.DefaultPageSetup.BottomMargin = 30;
             pdfDoc.Info.Title = "Wycena: "+name;
             pdfDoc.Info.Subject = "Wycena dla klienta";
-            pdfDoc.Info.Author = AlDar_1._0.Properties.Settings.Default.UserName;
+            pdfDoc.Info.Author = Properties.Settings.Default.UserName;
             SetStyles();
             CreatePage();
             SaveAsPDF(); 

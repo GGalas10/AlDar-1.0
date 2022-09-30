@@ -18,7 +18,7 @@ namespace AlDar_1._0.Window
         {
             Settings.Default.DbPath = Directory.GetCurrentDirectory() + Settings.Default.DbPath;
             DirectorySecurity security = new DirectorySecurity();
-            //security.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.AccountAdministratorSid, null), FileSystemRights.FullControl, AccessControlType.Allow));
+            security.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, AccessControlType.Allow));
             Directory.CreateDirectory(Settings.Default.DbPath,security);
             Settings.Default.UserName = NameBox.Text.Trim();
             Settings.Default.FirstTime = false;

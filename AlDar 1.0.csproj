@@ -32,7 +32,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -67,9 +67,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MessBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\Folder Grzegorza\Programy C# testy\MessBox\bin\Debug\MessBox.dll</HintPath>
+    <Reference Include="MessBox">
+      <HintPath>DLL\MessBox.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
@@ -123,12 +122,6 @@
   <ItemGroup>
     <Compile Include="Common Class\Common.cs" />
     <Compile Include="Common Class\PDFCreator.cs" />
-    <Compile Include="Common Class\PDFViewer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Common Class\PDFViewer.Designer.cs">
-      <DependentUpon>PDFViewer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Window\AdditionalForm\VaLView.cs">
       <SubType>Form</SubType>
@@ -201,9 +194,6 @@
     <Compile Include="Window\ValPanel.Designer.cs">
       <DependentUpon>ValPanel.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Common Class\PDFViewer.resx">
-      <DependentUpon>PDFViewer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Window\AdditionalForm\VaLView.resx">
       <DependentUpon>VaLView.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,25 +257,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DLL\" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="AcroPDFLib">
-      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="AxAcroPDFLib">
-      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
